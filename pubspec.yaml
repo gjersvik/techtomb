@@ -1,6 +1,7 @@
 name: HtmlBlock
 description: A sample web application
 dependencies:
+  unittest: any
   box2d: any
   browser: any
   game_loop: any

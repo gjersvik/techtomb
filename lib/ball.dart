@@ -1,0 +1,4 @@
+library ball;
+
+class Ball {
+}
