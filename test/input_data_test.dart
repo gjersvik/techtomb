@@ -9,5 +9,11 @@ main(){
       var data = new InputData();
       expect(data.version, 0);
     });
+    test('Clear sets version to zero',() {
+      InputData data = new InputData();
+      data.version = 5;
+      data.clear();
+      expect(data.version, 0);
+    });
   });
 }
