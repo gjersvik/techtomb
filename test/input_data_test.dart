@@ -15,5 +15,11 @@ main(){
       data.clear();
       expect(data.version, 0);
     });
+    test('Make adds one to version',() {
+      InputData data = new InputData();
+      data.version = 5;
+      
+      expect(data.make().version, 6);
+    });
   });
 }

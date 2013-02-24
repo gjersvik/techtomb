@@ -5,7 +5,18 @@ class InputData {
   
   InputData();
   
-  clear () {
+  void clear () {
     version = 0;
+  }
+  
+  InputData make ([InputData recycle]) {
+    if(?recycle){
+      recycle.clear();
+    }else{
+      recycle = new InputData();
+    }
+    
+    recycle.version = this.version + 1;
+    return recycle;
   }
 }
