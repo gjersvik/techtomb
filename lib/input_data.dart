@@ -1,7 +1,11 @@
 library input_data;
 
 class InputData {
-  final int version;
+  int version = 0;
   
-  InputData(): version = 0;
+  InputData();
+  
+  clear () {
+    version = 0;
+  }
 }
