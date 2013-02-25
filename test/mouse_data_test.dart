@@ -20,6 +20,21 @@ main(){
       data.x = 5;
       expect(data.make().x, 5);
     });
+    test('Have a property y',() {
+      var data = new MouseData();
+      expect(data.y, 0);
+    });
+    test('Clear sets y to zero',() {
+      MouseData data = new MouseData();
+      data.y = 5;
+      data.clear();
+      expect(data.y, 0);
+    });
+    test('Make copy y',() {
+      MouseData data = new MouseData();
+      data.y = 5;
+      expect(data.make().y, 5);
+    });
   });
 }
 
