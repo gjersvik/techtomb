@@ -10,7 +10,7 @@ class MouseData extends InputData {
   
   MouseData():super();
   
-  void clear() {
+  MouseData clear() {
     x = 0;
     y = 0;
     buttons.clear();

@@ -5,8 +5,9 @@ class InputData {
   
   InputData();
   
-  void clear () {
+  InputData clear () {
     version = 0;
+    return this;
   }
   
   InputData make ([InputData recycle]) {

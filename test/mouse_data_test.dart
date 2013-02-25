@@ -12,8 +12,7 @@ main(){
     test('Clear sets x to zero',() {
       MouseData data = new MouseData();
       data.x = 5;
-      data.clear();
-      expect(data.x, 0);
+      expect(data.clear().x, 0);
     });
     test('Make copy x',() {
       MouseData data = new MouseData();
@@ -28,8 +27,7 @@ main(){
     test('Clear sets y to zero',() {
       MouseData data = new MouseData();
       data.y = 5;
-      data.clear();
-      expect(data.y, 0);
+      expect(data.clear().y, 0);
     });
     test('Make copy y',() {
       MouseData data = new MouseData();
@@ -45,8 +43,7 @@ main(){
     test('Clear sets buttons to empty set',() {
       MouseData data = new MouseData();
       data.buttons.add(0);
-      data.clear();
-      expect(data.buttons, isEmpty);
+      expect(data.clear().buttons, isEmpty);
     });
     test('Make copy of buttons',() {
       MouseData data = new MouseData();
@@ -62,8 +59,7 @@ main(){
     test('Clear sets clicks to empty set',() {
       MouseData data = new MouseData();
       data.clicks.add(0);
-      data.clear();
-      expect(data.clicks, isEmpty);
+      expect(data.clear().clicks, isEmpty);
     });
     test('Make ingores clicks',() {
       MouseData data = new MouseData();
