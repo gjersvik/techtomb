@@ -6,6 +6,7 @@ class MouseData extends InputData {
   num x = 0;
   num y = 0;
   Set<int> buttons = new Set();
+  Set<int> clicks = new Set();
   
   MouseData():super();
   
@@ -13,6 +14,7 @@ class MouseData extends InputData {
     x = 0;
     y = 0;
     buttons.clear();
+    clicks.clear();
     return super.clear();
   }
   
