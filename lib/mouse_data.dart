@@ -5,12 +5,14 @@ import 'input_data.dart';
 class MouseData extends InputData {
   num x = 0;
   num y = 0;
+  Set<int> buttons = new Set();
   
   MouseData():super();
   
   void clear() {
     x = 0;
     y = 0;
+    buttons.clear();
     return super.clear();
   }
   
@@ -20,8 +22,9 @@ class MouseData extends InputData {
     }
     recycle = super.make(recycle);
     
-    recycle.x = this.x;
-    recycle.y = this.y;
+    recycle.x = x;
+    recycle.y = y;
+    recycle.buttons.addAll(buttons);
     return recycle;
   }
 }

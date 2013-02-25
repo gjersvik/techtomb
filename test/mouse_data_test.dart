@@ -35,6 +35,22 @@ main(){
       data.y = 5;
       expect(data.make().y, 5);
     });
+    test('Have a property buttons that is an empty Set',() {
+      var data = new MouseData();
+      expect(data.buttons, isEmpty);
+      expect(data.buttons, new isInstanceOf<Set>());
+    });
+    test('Clear sets buttons to empty set',() {
+      MouseData data = new MouseData();
+      data.buttons.add(0);
+      data.clear();
+      expect(data.buttons, isEmpty);
+    });
+    test('Make copy of buttons',() {
+      MouseData data = new MouseData();
+      data.buttons.add(0);
+      expect(data.make().buttons, hasLength(1));
+    });
   });
 }
 
