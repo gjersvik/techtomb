@@ -1,9 +1,9 @@
 library test.input_sensor;
 
-import 'package:unittest/unittest.dart';
+import '../../packages/unittest/unittest.dart';
 
-import 'package:gamelib/input_sensor.dart';
-import 'package:gamelib/input_data.dart';
+import 'package:gamelib/input/input_sensor.dart';
+import 'package:gamelib/input/input_data.dart';
 
 main(){
   group('InputSensor:',() {
