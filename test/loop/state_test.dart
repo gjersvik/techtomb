@@ -27,5 +27,18 @@ main(){
       var state = new State(data);
       expect(state.data, data);
     });
+    test('make() increase framecount with 1',() {
+      var state = new State({});
+      expect(state.make(0.1,{}).framecount, 1);
+    });
+    test('make() sets new gametime',() {
+      var state = new State({});
+      expect(state.make(0.2,{}).gameTime, 0.2);
+    });
+    test('make()  lastGametime is the samme as past gametime',() {
+      var state = new State({});
+      state.gameTime = 0.1;
+      expect(state.make(0.2,{}).lastGameTime, 0.1);
+    });
   });
 }

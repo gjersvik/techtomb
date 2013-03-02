@@ -13,5 +13,16 @@ class State{
     }
     this.time = time.toUtc();
   }
+  
+  State make(num gametime, Map data, [DateTime time]){
+    if(!?time){
+      time = new DateTime.now();
+    }
+    var state = new State(data,time);
+    state.framecount = framecount + 1;
+    state.gameTime = gametime;
+    state.lastGameTime = gameTime;
+    return state;
+  }
 }
 
