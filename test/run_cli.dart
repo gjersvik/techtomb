@@ -7,8 +7,8 @@ import 'input/input_data_test.dart' as InputDataTest;
 import 'input/mouse_data_test.dart' as MouseDataTest;
 import 'input/input_sensor_test.dart' as InputSensorTest;
 
+import 'loop_test.dart' as LoopTest;
 import 'loop/state_test.dart' as LoopStateTest;
-
 
 main() {
   useVMConfiguration();
@@ -17,6 +17,7 @@ main() {
   MouseDataTest.main();
   InputSensorTest.main();
   
+  LoopTest.main();
   LoopStateTest.main();
 }
 
