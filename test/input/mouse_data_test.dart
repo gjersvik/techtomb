@@ -1,6 +1,6 @@
 library test.mouse_data;
 
-import '../../packages/unittest/unittest.dart';
+import 'package:unittest/unittest.dart';
 import 'package:gamelib/input/mouse_data.dart';
 
 main(){

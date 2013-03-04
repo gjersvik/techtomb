@@ -1,6 +1,6 @@
 library test.input_data;
 
-import '../../packages/unittest/unittest.dart';
+import 'package:unittest/unittest.dart';
 import 'package:gamelib/input/input_data.dart';
 
 main(){

@@ -1,7 +1,6 @@
 library test.input_sensor;
 
-import '../../packages/unittest/unittest.dart';
-
+import 'package:unittest/unittest.dart';
 import 'package:gamelib/input/input_sensor.dart';
 import 'package:gamelib/input/input_data.dart';
 
