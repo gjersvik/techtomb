@@ -7,12 +7,16 @@ export 'loop/runner.dart';
 
 class Loop {
   final Runner runner;
+  List callbacks;
   
-  Loop(this.runner){
+  Loop(this.runner):callbacks = new List();
+  
+  _tic(){
+    callbacks.forEach((f) => f());
   }
   
   start() {
-    runner.start(() {});
+    runner.start(_tic);
   }
   
   end() {
