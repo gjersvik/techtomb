@@ -11,6 +11,10 @@ class Loop {
   Loop(this.runner){
   }
   
+  start() {
+    runner.start(() {});
+  }
+  
   end() {
     runner.stop();
   }
