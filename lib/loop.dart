@@ -6,17 +6,12 @@ import 'loop/runner.dart';
 export 'loop/runner.dart';
 
 class Loop {
-  var _onBefore;
-  var _onLoop;
-  var _onAfter;
+  final Runner runner;
   
-  Loop(){
-    _onBefore = new StreamController<State>.broadcast();
-    _onLoop = new StreamController<State>.broadcast();
-    _onAfter = new StreamController<State>.broadcast();
+  Loop(this.runner){
   }
   
-  Stream<State> get onBefore => _onBefore.stream;
-  Stream<State> get onLoop => _onLoop.stream;
-  Stream<State> get onAfter => _onAfter.stream;
+  end() {
+    runner.stop();
+  }
 }
