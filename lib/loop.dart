@@ -2,9 +2,6 @@ library loop;
 
 import "dart:async";
 
-import 'loop/state.dart';
-export 'loop/state.dart';
-
 import 'loop/runner.dart';
 export 'loop/runner.dart';
 
