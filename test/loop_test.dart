@@ -23,7 +23,23 @@ main(){
       mock.getLogs(callsTo('stop')).verify(happenedOnce);
     });
     test('When the tic function is called all the callbacks gets runned',() {
-      fail('Test not implemented');
+      var mock = new MockRunner();
+      var loop = new Loop(mock);
+      var list = new List();
+      
+      createCallback(num) {
+        return () => list.add(num);
+      }
+      
+      loop.callbacks.add(createCallback(1));
+      loop.callbacks.add(createCallback(2));
+      loop.callbacks.add(createCallback(3));
+      
+      loop.start();
+      var tic = mock.getLogs(callsTo('start')).first.args[0];
+      tic();
+      
+      expect(list,[1,2,3]);
     });
   });
 }
