@@ -9,7 +9,11 @@ class MockRunner extends Mock implements Runner{}
 main(){
   group('Loop:',() {
     test('Loop.start() calls Runner.start() wit a tic function',() {
-      fail('Test not implemented');
+      var mock = new MockRunner();
+      var loop = new Loop(mock);
+      loop.start();
+      
+      mock.getLogs(callsTo('start', new isInstanceOf<Function>())).verify(happenedOnce);
     });
     test('Loop.end() calls Runner.stop()',() {
       var mock = new MockRunner();
