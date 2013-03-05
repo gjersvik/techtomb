@@ -11,8 +11,12 @@ main(){
     test('Loop.start() calls Runner.start() wit a tic function',() {
       fail('Test not implemented');
     });
-    test('Loop.end() calls Runner.end()',() {
-      fail('Test not implemented');
+    test('Loop.end() calls Runner.stop()',() {
+      var mock = new MockRunner();
+      var loop = new Loop(mock);
+      loop.end();
+      
+      mock.getLogs(callsTo('stop')).verify(happenedOnce);
     });
     test('When the tic function is called all the callbacks gets runned',() {
       fail('Test not implemented');
