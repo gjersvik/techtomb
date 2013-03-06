@@ -6,7 +6,7 @@ import 'runner.dart';
 export 'runner.dart';
 
 
-class TimerRunner extends Runner {
+class AnimationRunner extends Runner {
   var _tic = null;
   
   _callback( _ ) {
