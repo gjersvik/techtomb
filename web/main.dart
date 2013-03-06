@@ -1,23 +1,15 @@
 import 'dart:html';
 import 'dart:math';
 
-import 'package:game_loop/game_loop.dart';
-
-resize(game){
-  var h = window.innerHeight;
-  var w = window.innerWidth;
-  var m = min(h,w);
-  CanvasElement c = query('#htmlblocks');
-  
-  c.height = m;
-  c.width = m;
-}
+import 'package:gamelib/loop.dart';
+import 'package:gamelib/loop/timer_runner.dart';
+import 'package:gamelib/loop/animation_runner.dart';
 
 void main() {
-  var gameLoop = new GameLoop(query('#htmlblocks'));
+  var gameloop = new Loop(new TimerRunner());
+  var renderloop = new Loop(new AnimationRunner());
   
-  gameLoop.onResize = resize;
-  
-  gameLoop.start();
+  gameloop.start();
+  renderloop.start();
 }
 
