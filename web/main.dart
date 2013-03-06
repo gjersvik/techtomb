@@ -21,7 +21,29 @@ CanvasRenderingContext2D setupCanvas(){
 }
 
 World setupBox2d(){
-  return new World(new Vector(0, 0), true, new DefaultWorldPool());
+  var world = new World(new Vector(0, 0), true, new DefaultWorldPool());
+  var wallfix = new FixtureDef();
+  wallfix.density = 1;
+  wallfix.restitution = 1;
+  wallfix.friction = 0;
+  wallfix.shape = new PolygonShape();
+  wallfix.shape.setAsBox(60,5);
+  
+  var wallbody = new BodyDef();
+  wallbody.type = BodyType.STATIC;
+  wallbody.position = new Vector(50, -5);
+  
+  world.createBody(wallbody).createFixture(wallfix);
+  wallbody.position = new Vector(50, 105);
+  world.createBody(wallbody).createFixture(wallfix);
+  
+  wallfix.shape.setAsBox(5,60);
+  wallbody.position = new Vector(-5, 50);
+  world.createBody(wallbody).createFixture(wallfix);
+  wallbody.position = new Vector(105, 50);
+  world.createBody(wallbody).createFixture(wallfix);
+  
+  return world;
 }
 
 Body makeBall(world) {
