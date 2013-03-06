@@ -39,6 +39,8 @@ Body makeBall(world) {
   var ball = world.createBody(ballbody);
   ball.createFixture(ballfix);
   
+  ball.linearVelocity = new Vector(40, 30);
+  
   return ball;
 }
 
@@ -49,11 +51,17 @@ void main() {
   var world = setupBox2d();
   var ball = makeBall(world);
   
+  gameloop.callbacks.add((){
+    world.step(0.016 , 10, 10);
+  });
+  
   renderloop.callbacks.add((){
     paint.clearRect(0, 0, 100, 100);
     
-    paint.arc(ball.position.x, ball.position.y, 1, 0, PI*2, false);
     paint.fillStyle = 'yellow';
+    paint.beginPath();
+    paint.arc(ball.position.x, ball.position.y, 1, 0, PI*2, false);
+    
     
     paint.fill();
   });
