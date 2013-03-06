@@ -1,6 +1,8 @@
 import 'dart:html';
 import 'dart:math';
 
+import 'package:box2d/box2d.dart';
+
 import 'package:gamelib/loop.dart';
 import 'package:gamelib/loop/timer_runner.dart';
 import 'package:gamelib/loop/animation_runner.dart';
@@ -18,17 +20,42 @@ CanvasRenderingContext2D setupCanvas(){
   return paint;
 }
 
+World setupBox2d(){
+  return new World(new Vector(0, 0), true, new DefaultWorldPool());
+}
+
+Body makeBall(world) {
+  var ballfix = new FixtureDef();
+  ballfix.density = 1;
+  ballfix.restitution = 1;
+  ballfix.friction = 0;
+  ballfix.shape = new CircleShape();
+  ballfix.shape.radius = 1;
+  
+  var ballbody = new BodyDef();
+  ballbody.type = BodyType.DYNAMIC;
+  ballbody.position = new Vector(50, 50);
+  
+  var ball = world.createBody(ballbody);
+  ball.createFixture(ballfix);
+  
+  return ball;
+}
+
 void main() {
   var gameloop = new Loop(new TimerRunner());
   var renderloop = new Loop(new AnimationRunner());
   var paint = setupCanvas();
+  var world = setupBox2d();
+  var ball = makeBall(world);
   
   renderloop.callbacks.add((){
     paint.clearRect(0, 0, 100, 100);
     
-    paint.strokeStyle = 'yellow';
+    paint.arc(ball.position.x, ball.position.y, 1, 0, PI*2, false);
+    paint.fillStyle = 'yellow';
     
-    paint.strokeRect(1, 1, 98, 98, 2);
+    paint.fill();
   });
   
   gameloop.start();
