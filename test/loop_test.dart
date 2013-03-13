@@ -28,7 +28,7 @@ main(){
       var list = new List();
       
       createCallback(num) {
-        return () => list.add(num);
+        return (_) => list.add(num);
       }
       
       loop.callbacks.add(createCallback(1));

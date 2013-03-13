@@ -1,7 +1,5 @@
 library loop;
 
-import "dart:async";
-
 import 'loop/runner.dart';
 export 'loop/runner.dart';
 
@@ -12,7 +10,8 @@ class Loop {
   Loop(this.runner):callbacks = new List();
   
   _tic(){
-    callbacks.forEach((f) => f());
+    var loop_event = {};
+    callbacks.forEach((f) => f(loop_event) );
   }
   
   start() {
