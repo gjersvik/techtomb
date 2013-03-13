@@ -38,6 +38,12 @@ main(){
       
       test.mock.getLogs(callsTo('stop')).verify(happenedOnce);
     });
+    test('Loop.pause() calls Runner.stop()',() {
+      var test = new LoopTestData();
+      test.loop.pause();
+      
+      test.mock.getLogs(callsTo('stop')).verify(happenedOnce);
+    });
     test('When the tic function is called all the callbacks gets runned',() {
       var test = new LoopTestData();
       var list = new List();
@@ -64,6 +70,49 @@ main(){
       
       test.loop.start();
       test.tic();
+    });
+    test('Loop event[ticCount] increase by one every loop',() {
+      var test = new LoopTestData();
+      var count = null;
+      
+      test.loop.callbacks.add((e) => count = e['ticCount']);
+      
+      test.loop.start();
+      test.tic();
+      expect(count, 1);
+      test.tic();
+      expect(count, 2);
+      test.tic();
+      expect(count, 3);
+    });
+    test('end() reset count',() {
+      var test = new LoopTestData();
+      var count = null;
+      test.loop.callbacks.add((e) => count = e['ticCount']);
+      
+      test.loop.start();
+      test.tic();
+      test.tic();
+      test.loop.end();
+      
+      test.loop.start();
+      test.tic();
+      
+      expect(count, 1);
+    });
+    test('pause() dont reset count',() {
+      var test = new LoopTestData();
+      var count = null;
+      test.loop.callbacks.add((e) => count = e['ticCount']);
+      
+      test.loop.start();
+      test.tic();
+      test.tic();
+      test.loop.pause();
+      
+      test.loop.start();
+      test.tic();
+      expect(count, 3);
     });
   });
 }
