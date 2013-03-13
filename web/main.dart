@@ -49,24 +49,70 @@ World setupBox2d(){
   return world;
 }
 
+class GameState{
+  Map _state;
+  
+  GameState(): _state = {};
+  
+  addState(num gametime, Map state) => _state = state;
+  getState(num gametime) => _state;
+  loop(Map event) =>
+    addState(event['gametime'],event['gamestate']);
+}
+
+class Balls{
+  List balls;
+  World _world;
+  Math.Random _rand;
+  
+  Balls(this._world): _rand = new Math.Random(), balls = [];
+  
+  void genBall(){
+    var ball = new BallBody(_world);
+    ball.x = _rand.nextDouble() * 100;
+    ball.y = _rand.nextDouble() * 100;;
+    ball.angle = (_rand.nextDouble() * Math.PI *2) - Math.PI;
+    balls.add(ball);
+  }
+  
+  Map toGameState(){
+    var i = 1;
+    var map = {};
+    balls.forEach((ball) {
+      map['Ball$i'] = ball.toGameState();
+      i += 1;
+    });
+    return map;
+  }
+  
+}
+
 void main() {
   var game_loop = new Loop(new TimerRunner());
   var render_loop = new Loop(new AnimationRunner());
-  var paint = setupCanvas();
+  var context = setupCanvas();
   var world = setupBox2d();
-  var ball = new BallBody(world);
-  ball.x = 50;
-  ball.y = 50;
-  ball.angle = 1;
   
-  game_loop.callbacks.add((_){
-    world.step(0.016 , 10, 10);
-  });
+  var gamestate = new GameState();
   
-  render_loop.callbacks.add((_){
-    paint.clearRect(0, 0, 100, 100);
-    
-    paintBall(paint, ball.toGameState());
+  var balls = new Balls(world);
+  balls.genBall();
+  balls.genBall();
+  balls.genBall();
+  balls.genBall();
+  balls.genBall();
+  balls.genBall();
+  
+  game_loop.callbacks.add((_) => world.step(0.016 , 10, 10));
+  
+  game_loop.callbacks.add((e) => e['gamestate'] = balls.toGameState());
+  
+  game_loop.callbacks.add(gamestate.loop);
+  
+  render_loop.callbacks.add((event){
+    context.clearRect(0, 0, 100, 100);
+    var state = gamestate.getState(event['gametime']);
+    paint(context, state);
   });
   
   game_loop.start();

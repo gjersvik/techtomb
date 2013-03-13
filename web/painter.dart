@@ -6,7 +6,7 @@ import 'dart:math';
 void paint(CanvasRenderingContext2D contex, Map gamestate){
   gamestate.forEach((key, value){
     if(value['type'] == 'ball'){
-      paintBall(contex, value['type']);
+      paintBall(contex, value);
     }
   });
 }
