@@ -37,6 +37,15 @@ class BallBody extends Ball {
     _updateSpeed(_speed,_angle);
   }
   
+  Map toGameState(){
+    return {
+      'type' : 'ball',
+      'x' : x,
+      'y' : y,
+      'size' : size
+    };
+  }
+  
   get x => body.position.x;
   set x(x) => body.setTransform(new vec2(x,y), body.angle);
   

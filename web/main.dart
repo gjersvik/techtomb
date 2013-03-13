@@ -1,4 +1,5 @@
 import 'ball.dart';
+import 'painter.dart';
 
 import 'dart:math' as Math;
 import 'dart:html';
@@ -65,12 +66,7 @@ void main() {
   render_loop.callbacks.add((_){
     paint.clearRect(0, 0, 100, 100);
     
-    paint.fillStyle = 'yellow';
-    paint.beginPath();
-    paint.arc(ball.x, ball.y, ball.size, 0, Math.PI*2, false);
-    
-    
-    paint.fill();
+    paintBall(paint, ball.toGameState());
   });
   
   game_loop.start();
