@@ -55,6 +55,16 @@ main(){
       
       expect(list,[1,2,3]);
     });
+
+    test('Loop event data propecate thru the loop',() {
+      var test = new LoopTestData();
+      
+      test.loop.callbacks.add((e) => e['testdata'] = 'somevalue');
+      test.loop.callbacks.add((e) => expect(e['testdata'],'somevalue'));
+      
+      test.loop.start();
+      test.tic();
+    });
   });
 }
 
