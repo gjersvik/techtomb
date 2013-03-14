@@ -8,19 +8,23 @@ class TriggerAction{
   
   bool get triggerd => _triggerd;
   
-  Map<string,dynamic> get data{
+  Map<String,dynamic> get data{
     var data = new Map();
     if(_triggerd == true){
-      data['name'] == name;
+      data['name'] = name;
     }
     return data;
   }
-  void set data(Map<string,dynamic> data){
+  void set data(Map<String,dynamic> data){
     if(data['name'] == name){
-      trigger; 
+      trigger(); 
     }
   }
   
-  void trigger() => _triggerd = true;
-  void reset() => _triggerd = false;
+  void trigger() {
+    _triggerd = true;
+  }
+  void reset(){ 
+    _triggerd = false;
+  }
 }
