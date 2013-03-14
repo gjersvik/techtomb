@@ -12,13 +12,12 @@ typedef void TakeState(num gametime, Map<String, dynamic> state);
 class Game{
   World world;
   Loop loop;
-  TakeState _takeState;
-  
-  Game(): 
+
+  Game():
     world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
     loop = new Loop(new TimerRunner()){
     _createWall();
-    
+
     var balls = new Balls(world);
     balls.genBall();
     balls.genBall();
@@ -26,30 +25,30 @@ class Game{
     balls.genBall();
     balls.genBall();
     balls.genBall();
-    
+
     loop.callbacks.add((_) => world.step(0.016 , 10, 10));
-    
+
     loop.callbacks.add((e) => e['gamestate'] = balls.toGameState());
-    
+
     loop.callbacks.add((event) => _takeState(event['gametime'],event['gamestate']));
   }
-  
+
   start() => loop.start();
-  
+
   postState(TakeState callback) => _takeState = callback;
-  
+
   _createWall(){
     var shape = new PolygonShape();
     shape.setAsBox(90,20);
     var body = new BodyDef();
     body.type = BodyType.STATIC;
-    
+
     shape.setAsBox(70,10);
     body.position = new vec2(50, -10);
     world.createBody(body).createFixtureFromShape(shape);
     body.position = new vec2(50, 110);
     world.createBody(body).createFixtureFromShape(shape);
-    
+
     shape.setAsBox(10,70);
     body.position = new vec2(-10, 50);
     world.createBody(body).createFixtureFromShape(shape);
@@ -62,17 +61,17 @@ class Balls{
   List balls;
   World _world;
   Math.Random _rand;
-  
+
   Balls(this._world): _rand = new Math.Random(), balls = [];
-  
+
   void genBall(){
-    var ball = new BallBody(_world);
-    ball.x = _rand.nextDouble() * 100;
-    ball.y = _rand.nextDouble() * 100;;
-    ball.angle = (_rand.nextDouble() * Math.PI *2) - Math.PI;
+    var ball = new BallBody(_world,
+        x: _rand.nextDouble() * 100,
+        y: _rand.nextDouble() * 100,
+        angle: (_rand.nextDouble() * Math.PI *2) - Math.PI);
     balls.add(ball);
   }
-  
+
   Map toGameState(){
     var i = 1;
     var map = {};
@@ -82,5 +81,5 @@ class Balls{
     });
     return map;
   }
-  
+
 }
