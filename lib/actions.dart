@@ -9,7 +9,9 @@ export 'trigger_action.dart';
 class Actions {
   Map<String,TriggerAction> actions;
   
-  add(TriggerAction action) => actions[action.name] = action;
+  Actions():actions = {};
+  
+  TriggerAction add(TriggerAction action) => actions[action.name] = action;
   
   List<Map> get data{
     List data = [];
@@ -17,7 +19,7 @@ class Actions {
     actions.values.forEach((v){
       var temp = v.data;
       if(temp.isEmpty == false){
-        data.add(v);
+        data.add(temp);
       }
     });
     
@@ -26,7 +28,7 @@ class Actions {
   void set data(List<Map> data){
     data.forEach((value){
       if(actions.containsKey(value['name'])){
-        actions['name'].data = value;
+        actions[value['name']].data = value;
       }
     });
   }
