@@ -30,20 +30,20 @@ World setupBox2d(){
   wall_fix.restitution = 1;
   wall_fix.friction = 0;
   wall_fix.shape = new PolygonShape();
-  wall_fix.shape.setAsBox(60,5);
+  wall_fix.shape.setAsBox(60,20);
   
   var wall_body = new BodyDef();
   wall_body.type = BodyType.STATIC;
-  wall_body.position = new vec2(50, -5);
+  wall_body.position = new vec2(50, -20);
   
   world.createBody(wall_body).createFixture(wall_fix);
-  wall_body.position = new vec2(50, 105);
+  wall_body.position = new vec2(50, 120);
   world.createBody(wall_body).createFixture(wall_fix);
   
   wall_fix.shape.setAsBox(5,60);
-  wall_body.position = new vec2(-5, 50);
+  wall_body.position = new vec2(-20, 50);
   world.createBody(wall_body).createFixture(wall_fix);
-  wall_body.position = new vec2(105, 50);
+  wall_body.position = new vec2(120, 50);
   world.createBody(wall_body).createFixture(wall_fix);
   
   return world;
