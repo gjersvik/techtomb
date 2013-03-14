@@ -1,9 +1,7 @@
 import 'ball.dart';
-import 'painter.dart';
 import 'render.dart';
 
 import 'dart:math' as Math;
-import 'dart:html';
 
 import 'package:box2d/box2d.dart';
 
@@ -37,17 +35,6 @@ World setupBox2d(){
   return world;
 }
 
-class GameState{
-  Map _state;
-  
-  GameState(): _state = {};
-  
-  addState(num gametime, Map state) => _state = state;
-  getState(num gametime) => _state;
-  loop(Map event) =>
-    addState(event['gametime'],event['gamestate']);
-}
-
 class Balls{
   List balls;
   World _world;
@@ -79,11 +66,7 @@ void main() {
   var render = new Render('#htmlblocks');
   
   var game_loop = new Loop(new TimerRunner());
-  var render_loop = new Loop(new AnimationRunner());
-  var context = render.context;
   var world = setupBox2d();
-  
-  var gamestate = new GameState();
   
   var balls = new Balls(world);
   balls.genBall();
@@ -97,15 +80,9 @@ void main() {
   
   game_loop.callbacks.add((e) => e['gamestate'] = balls.toGameState());
   
-  game_loop.callbacks.add(gamestate.loop);
-  
-  render_loop.callbacks.add((event){
-    context.clearRect(0, 0, 100, 100);
-    var state = gamestate.getState(event['gametime']);
-    paint(context, state);
-  });
+  game_loop.callbacks.add((Map event) => render.addState(event['gametime'],event['gamestate']));
   
   game_loop.start();
-  render_loop.start();
+  render.start();
 }
 
