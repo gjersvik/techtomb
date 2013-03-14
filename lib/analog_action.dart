@@ -2,14 +2,14 @@ library analog_action;
 
 import 'trigger_action.dart';
 
-class AnalogTrigger extends TriggerAction{
+class AnalogAction extends TriggerAction{
   double _value;
   double _prev;
   
-  AnalogTrigger(name):super(name);
+  AnalogAction(name):super(name);
   
   double get value => _value;
-  void set value(value) {
+  void set value(double value) {
     _value = value;
     if(_value == _prev){
       super.reset();
