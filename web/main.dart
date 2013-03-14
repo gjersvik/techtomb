@@ -1,5 +1,6 @@
 import 'ball.dart';
 import 'painter.dart';
+import 'render.dart';
 
 import 'dart:math' as Math;
 import 'dart:html';
@@ -9,19 +10,6 @@ import 'package:box2d/box2d.dart';
 import 'package:gamelib/loop.dart';
 import 'package:gamelib/loop/timer_runner.dart';
 import 'package:gamelib/loop/animation_runner.dart';
-
-CanvasRenderingContext2D setupCanvas(){
-  var size = Math.min(window.innerHeight,window.innerWidth);
-  CanvasElement c = query('#htmlblocks');
-  CanvasRenderingContext2D paint = c.getContext('2d');
-  
-  c.height = size;
-  c.width = size;
-  
-  paint.scale(size / 100, size / 100);
-  
-  return paint;
-}
 
 World setupBox2d(){
   var world = new World(new vec2(0, 0), true, new DefaultWorldPool());
@@ -40,7 +28,7 @@ World setupBox2d(){
   wall_body.position = new vec2(50, 120);
   world.createBody(wall_body).createFixture(wall_fix);
   
-  wall_fix.shape.setAsBox(5,60);
+  wall_fix.shape.setAsBox(20,60);
   wall_body.position = new vec2(-20, 50);
   world.createBody(wall_body).createFixture(wall_fix);
   wall_body.position = new vec2(120, 50);
@@ -88,9 +76,11 @@ class Balls{
 }
 
 void main() {
+  var render = new Render('#htmlblocks');
+  
   var game_loop = new Loop(new TimerRunner());
   var render_loop = new Loop(new AnimationRunner());
-  var context = setupCanvas();
+  var context = render.context;
   var world = setupBox2d();
   
   var gamestate = new GameState();
