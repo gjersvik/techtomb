@@ -1,4 +1,4 @@
-library loop_runner;
+part of gamelib_share;
 
 abstract class Runner {
   void start(Function tic);
