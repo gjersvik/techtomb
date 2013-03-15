@@ -3,14 +3,14 @@ library ball;
 import 'dart:math' as Math;
 import 'package:box2d/box2d.dart';
 
-class BallBody{
+class Ball{
   Body body;
   Fixture fixture;
   num _speed;
   num _angle;
 
 
-  BallBody(World world, {
+  Ball(World world, {
       num x: 0,
       num y: 0,
       num size: 1,

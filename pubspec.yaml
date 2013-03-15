@@ -1,8 +1,9 @@
 name: HtmlBlock
+version: 0.1.0
 description: A sample web application
 dependencies:
+  unittest: any
   gamelib:
     git: git://github.com/gjersvik/gamelib.git
-  unittest: any
   box2d: any
   browser: any

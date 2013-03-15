@@ -14,38 +14,29 @@ class Game{
   World world;
   Loop loop;
   Actions actions;
-  AnalogAction pad;
-
-  var _takeState;
+  AnalogAction padAction;
+  Pad pad;
+  Ball ball;
+  TakeState _takeState;
 
   Game():
     world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
     loop = new Loop(new TimerRunner()),
     actions = new Actions(){
 
-    pad = actions.add(new AnalogAction('PadPosition'));
-    pad.value = 0.5;
-    pad.reset();
+    padAction = actions.add(new AnalogAction('PadPosition'));
+    padAction.value = 0.5;
+    padAction.reset();
     _createWall();
 
-    var balls = new Balls(world);
-    balls.genBall();
+    pad = new Pad(world);
+    ball = new Ball(world,
+        x: 50,
+        y: 50,
+        angle: 1
+    );
 
-    loop.callbacks.add((_) => world.step(0.016 , 10, 10));
-
-    loop.callbacks.add((e) => e['gamestate'] = balls.toGameState());
-    loop.callbacks.add((e){
-      var map = {};
-      map['type'] = 'pad';
-      map['height'] = 2;
-      map['width'] = 10;
-      map['y'] = 95;
-      map['x'] = pad.value * 100;
-      e['gamestate']['pad1'] = map;
-      actions.reset();
-    });
-
-    loop.callbacks.add((event) => _takeState(event['gametime'],event['gamestate']));
+    loop.callbacks.add(_gameloop);
   }
 
   start() => loop.start();
@@ -53,6 +44,15 @@ class Game{
   addActions(List<Map<String, dynamic>> state) => actions.data = state;
 
   postState(TakeState callback) => _takeState = callback;
+
+  _gameloop(event){
+    var state = {};
+    pad.moveTo(padAction.value * 100);
+    world.step(0.016 , 10, 10);
+    state['ball'] = ball.toGameState();
+    state['pad'] = pad.toGameState();
+    _takeState(event['gametime'],state);
+  }
 
   _createWall(){
     var shape = new PolygonShape();
@@ -74,29 +74,48 @@ class Game{
   }
 }
 
-class Balls{
-  List balls;
-  World _world;
-  Math.Random _rand;
+class Pad{
+  Body body;
+  Fixture fixture;
+  num _topspeed;
+  num _height;
+  num _width;
 
-  Balls(this._world): _rand = new Math.Random(), balls = [];
+  Pad(World world, {
+      num x: 50,
+      num y: 95,
+      num height: 2,
+      num width: 10,
+      num topspeed: 30}):
+        _height = height,
+        _width = width,
+        _topspeed = topspeed {
+    var bodydef = new BodyDef();
+    bodydef.type = BodyType.KINEMATIC;
+    bodydef.position = new vec2(x, y);
 
-  void genBall(){
-    var ball = new BallBody(_world,
-        x: 50,
-        y: 50,
-        angle: (_rand.nextDouble() * Math.PI *2) - Math.PI);
-    balls.add(ball);
+    body = world.createBody(bodydef);
+
+    var shape = new PolygonShape();
+    shape.setAsBox(width/2,height/2);
+
+    fixture = body.createFixtureFromShape(shape);
+  }
+
+  get x => body.position.x;
+  get y => body.position.y;
+
+  moveTo(x){
+    body.setTransform(new vec2(x,y), body.angle);
   }
 
   Map toGameState(){
-    var i = 1;
-    var map = {};
-    balls.forEach((ball) {
-      map['Ball$i'] = ball.toGameState();
-      i += 1;
-    });
-    return map;
+    return {
+      'type': 'pad',
+      'x': x,
+      'y': y,
+      'height': _height,
+      'width': _width
+    };
   }
-
 }
