@@ -10,9 +10,9 @@ class Input{
   TakeActions _takeActions;
   Actions actions;
 
-  Input(String selector){
+  Input(String selector): actions = new Actions(){
     element = query(selector);
-    AnalogAction pad = actions.add(new AnalogAction('PadPossision'));
+    AnalogAction pad = actions.add(new AnalogAction('PadPosition'));
 
     element.onMouseMove.listen((e){
       pad.value = e.clientX / element.clientWidth;

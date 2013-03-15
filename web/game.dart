@@ -6,34 +6,51 @@ import 'package:box2d/box2d.dart';
 
 import 'package:gamelib/loop.dart';
 import 'package:gamelib/loop/timer_runner.dart';
+import 'package:gamelib/actions.dart';
 
 typedef void TakeState(num gametime, Map<String, dynamic> state);
 
 class Game{
   World world;
   Loop loop;
+  Actions actions;
+  AnalogAction pad;
+
+  var _takeState;
 
   Game():
     world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
-    loop = new Loop(new TimerRunner()){
+    loop = new Loop(new TimerRunner()),
+    actions = new Actions(){
+
+    pad = actions.add(new AnalogAction('PadPosition'));
+    pad.value = 0.5;
+    pad.reset();
     _createWall();
 
     var balls = new Balls(world);
-    balls.genBall();
-    balls.genBall();
-    balls.genBall();
-    balls.genBall();
-    balls.genBall();
     balls.genBall();
 
     loop.callbacks.add((_) => world.step(0.016 , 10, 10));
 
     loop.callbacks.add((e) => e['gamestate'] = balls.toGameState());
+    loop.callbacks.add((e){
+      var map = {};
+      map['type'] = 'pad';
+      map['height'] = 2;
+      map['width'] = 10;
+      map['y'] = 95;
+      map['x'] = pad.value * 100;
+      e['gamestate']['pad1'] = map;
+      actions.reset();
+    });
 
     loop.callbacks.add((event) => _takeState(event['gametime'],event['gamestate']));
   }
 
   start() => loop.start();
+
+  addActions(List<Map<String, dynamic>> state) => actions.data = state;
 
   postState(TakeState callback) => _takeState = callback;
 
@@ -66,8 +83,8 @@ class Balls{
 
   void genBall(){
     var ball = new BallBody(_world,
-        x: _rand.nextDouble() * 100,
-        y: _rand.nextDouble() * 100,
+        x: 50,
+        y: 50,
         angle: (_rand.nextDouble() * Math.PI *2) - Math.PI);
     balls.add(ball);
   }
