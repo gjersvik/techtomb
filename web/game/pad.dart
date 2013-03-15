@@ -5,16 +5,17 @@ import 'package:gamelib/game.dart';
 
 class Pad extends GameObject{
   Body body;
+  World world;
   num _topspeed;
   num _height;
   num _width;
 
-  Pad(String name, World world, {
+  Pad(String name, this.world, {
       num x: 50,
       num y: 95,
       num height: 2,
       num width: 10,
-      num topspeed: 30}):
+      num topspeed: 100}):
         _height = height,
         _width = width,
         _topspeed = topspeed,
@@ -24,7 +25,6 @@ class Pad extends GameObject{
     bodydef.position = new vec2(x, y);
 
     body = world.createBody(bodydef);
-
     var shape = new PolygonShape();
     shape.setAsBox(width/2-height/2,height/2);
     body.createFixtureFromShape(shape);
@@ -43,8 +43,10 @@ class Pad extends GameObject{
   get x => body.position.x;
   get y => body.position.y;
 
-  moveTo(x){
-    body.setTransform(new vec2(x,y), body.angle);
+  void moveTo(num to){
+    to = _clamp(to, _width / 2, 100 - _width / 2);
+    num vx = _clamp((to - x) * world.timestep.inv_dt, -_topspeed, _topspeed);
+    body.linearVelocity = new vec2(vx, 0);
   }
 
   Map toGameState(){
@@ -54,6 +56,16 @@ class Pad extends GameObject{
     state['height'] = _height;
     state['width'] = _width;
     return state;
+  }
+
+  _clamp(value, min, max){
+    if( value < min){
+      return min;
+    }
+    if( value > max){
+      return max;
+    }
+    return value;
   }
 }
 
