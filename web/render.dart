@@ -52,11 +52,21 @@ class Render{
   }
 
   void _paintPad(Map pad){
+    var x = pad['x'];
+    var y = pad['y'];
+    var h = pad['height'];
+    var w = pad['width'];
+
     context.fillStyle = 'red';
     context.fillRect(
-        pad['x'] - pad['width'] / 2,
-        pad['y'] - pad['height'] / 2,
-        pad['width'],
-        pad['height']);
+        x - (w - h) / 2,
+        y - h / 2,
+        w - h,
+        h);
+    context.beginPath();
+    context.arc(x - (w - h) / 2, y, h / 2, 0, PI*2, false);
+    context.arc(x + (w - h) / 2, y, h / 2, 0, PI*2, false);
+    context.fill();
+
   }
 }

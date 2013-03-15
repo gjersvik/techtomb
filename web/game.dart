@@ -76,7 +76,6 @@ class Game{
 
 class Pad{
   Body body;
-  Fixture fixture;
   num _topspeed;
   num _height;
   num _width;
@@ -97,9 +96,18 @@ class Pad{
     body = world.createBody(bodydef);
 
     var shape = new PolygonShape();
-    shape.setAsBox(width/2,height/2);
+    shape.setAsBox(width/2-height/2,height/2);
+    body.createFixtureFromShape(shape);
 
-    fixture = body.createFixtureFromShape(shape);
+    var shape2 = new CircleShape();
+    shape2.radius = height/2;
+    shape2.position.x = (width - height)/2;
+    body.createFixtureFromShape(shape2);
+
+    var shape3 = new CircleShape();
+    shape3.radius = height/2;
+    shape3.position.x = (width - height)/-2;
+    body.createFixtureFromShape(shape3);
   }
 
   get x => body.position.x;
