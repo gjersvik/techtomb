@@ -2,22 +2,24 @@ library ball;
 
 import 'dart:math' as Math;
 import 'package:box2d/box2d.dart';
+import 'package:gamelib/game.dart';
 
-class Ball{
+class Ball extends GameObject{
   Body body;
   Fixture fixture;
   num _speed;
   num _angle;
 
 
-  Ball(World world, {
-      num x: 0,
-      num y: 0,
+  Ball(String name, World world, {
+      num x: 50,
+      num y: 50,
       num size: 1,
       num speed: 60,
-      num angle: 0}):
+      num angle: 1}):
       _speed = speed,
-      _angle = angle{
+      _angle = angle,
+      super(name,'ball'){
     var ball_body = new BodyDef();
     ball_body.type = BodyType.DYNAMIC;
     ball_body.position = new vec2(x, y);
@@ -37,12 +39,11 @@ class Ball{
   }
 
   Map toGameState(){
-    return {
-      'type' : 'ball',
-      'x' : x,
-      'y' : y,
-      'size' : size
-    };
+    var state = super.toGameState();
+    state['x'] = x;
+    state['y'] = y;
+    state['size'] = size;
+    return state;
   }
 
   get x => body.position.x;

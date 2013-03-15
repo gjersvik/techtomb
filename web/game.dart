@@ -1,5 +1,6 @@
 library game;
-import 'ball.dart';
+import 'game/ball.dart';
+import 'game/pad.dart';
 
 import 'dart:math' as Math;
 import 'package:box2d/box2d.dart';
@@ -13,26 +14,22 @@ class Game{
   Loop loop;
   Actions actions;
   AnalogAction padAction;
+  GameObjects objects;
   Pad pad;
-  Ball ball;
   TakeState _takeState;
 
   Game():
-    world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
-    loop = new Loop(new TimerRunner()),
-    actions = new Actions(){
-
+      world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
+      loop = new Loop(new TimerRunner()),
+      actions = new Actions(),
+      objects = new GameObjects(){
     padAction = actions.add(new AnalogAction('PadPosition'));
     padAction.value = 0.5;
     padAction.reset();
     _createWall();
 
-    pad = new Pad(world);
-    ball = new Ball(world,
-        x: 50,
-        y: 50,
-        angle: 1
-    );
+    pad = objects.add(new Pad('pad', world));
+    objects.add(new Ball('ball1', world));
 
     loop.callbacks.add(_gameloop);
   }
@@ -44,12 +41,9 @@ class Game{
   postState(TakeState callback) => _takeState = callback;
 
   _gameloop(event){
-    var state = {};
     pad.moveTo(padAction.value * 100);
     world.step(0.016 , 10, 10);
-    state['ball'] = ball.toGameState();
-    state['pad'] = pad.toGameState();
-    _takeState(event['gametime'],state);
+    _takeState(event['gametime'], objects.toGameState());
   }
 
   _createWall(){
@@ -69,59 +63,5 @@ class Game{
     world.createBody(body).createFixtureFromShape(shape);
     body.position = new vec2(110, 50);
     world.createBody(body).createFixtureFromShape(shape);
-  }
-}
-
-class Pad{
-  Body body;
-  num _topspeed;
-  num _height;
-  num _width;
-
-  Pad(World world, {
-      num x: 50,
-      num y: 95,
-      num height: 2,
-      num width: 10,
-      num topspeed: 30}):
-        _height = height,
-        _width = width,
-        _topspeed = topspeed {
-    var bodydef = new BodyDef();
-    bodydef.type = BodyType.KINEMATIC;
-    bodydef.position = new vec2(x, y);
-
-    body = world.createBody(bodydef);
-
-    var shape = new PolygonShape();
-    shape.setAsBox(width/2-height/2,height/2);
-    body.createFixtureFromShape(shape);
-
-    var shape2 = new CircleShape();
-    shape2.radius = height/2;
-    shape2.position.x = (width - height)/2;
-    body.createFixtureFromShape(shape2);
-
-    var shape3 = new CircleShape();
-    shape3.radius = height/2;
-    shape3.position.x = (width - height)/-2;
-    body.createFixtureFromShape(shape3);
-  }
-
-  get x => body.position.x;
-  get y => body.position.y;
-
-  moveTo(x){
-    body.setTransform(new vec2(x,y), body.angle);
-  }
-
-  Map toGameState(){
-    return {
-      'type': 'pad',
-      'x': x,
-      'y': y,
-      'height': _height,
-      'width': _width
-    };
   }
 }
