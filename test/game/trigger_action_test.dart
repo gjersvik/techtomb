@@ -1,7 +1,7 @@
 library trigger_action_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:gamelib/trigger_action.dart';
+import 'package:gamelib/game.dart';
 
 main(){
   group('TriggerAction:',() {

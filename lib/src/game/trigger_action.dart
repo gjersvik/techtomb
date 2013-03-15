@@ -1,13 +1,13 @@
-library trigger_action;
+part of gamelib_game;
 
 class TriggerAction{
   final String name;
   bool _triggerd = false;
-  
+
   TriggerAction(this.name);
-  
+
   bool get triggerd => _triggerd;
-  
+
   Map<String,dynamic> get data{
     var data = new Map();
     if(_triggerd == true){
@@ -17,14 +17,14 @@ class TriggerAction{
   }
   void set data(Map<String,dynamic> data){
     if(data['name'] == name){
-      trigger(); 
+      trigger();
     }
   }
-  
+
   void trigger() {
     _triggerd = true;
   }
-  void reset(){ 
+  void reset(){
     _triggerd = false;
   }
 }
