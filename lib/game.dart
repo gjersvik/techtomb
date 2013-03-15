@@ -6,6 +6,9 @@ export 'share.dart';
 import 'dart:async';
 
 part 'src/game/timer_runner.dart';
+
+part 'src/game/game_object.dart';
+
 part 'src/game/trigger_action.dart';
 part 'src/game/analog_action.dart';
 part 'src/game/actions.dart';
