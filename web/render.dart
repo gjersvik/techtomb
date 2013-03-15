@@ -3,8 +3,7 @@ library render;
 import 'dart:html';
 import 'dart:math';
 
-import 'package:gamelib/loop.dart';
-import 'package:gamelib/loop/animation_runner.dart';
+import 'package:gamelib/render.dart';
 
 class Render{
   CanvasElement element;

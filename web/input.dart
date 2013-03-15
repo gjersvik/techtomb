@@ -1,7 +1,7 @@
 library input;
 
 import 'dart:html';
-import 'package:gamelib/actions.dart';
+import 'package:gamelib/game.dart';
 
 typedef void TakeActions(List<Map<String, dynamic>> state);
 

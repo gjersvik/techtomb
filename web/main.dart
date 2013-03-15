@@ -10,7 +10,6 @@ void main() {
   input.pushActions(game.addActions);
   game.postState(render.addState);
 
-
   game.start();
   render.start();
 }

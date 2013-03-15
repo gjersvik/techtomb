@@ -4,9 +4,7 @@ import 'ball.dart';
 import 'dart:math' as Math;
 import 'package:box2d/box2d.dart';
 
-import 'package:gamelib/loop.dart';
-import 'package:gamelib/loop/timer_runner.dart';
-import 'package:gamelib/actions.dart';
+import 'package:gamelib/game.dart';
 
 typedef void TakeState(num gametime, Map<String, dynamic> state);
 
