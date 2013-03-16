@@ -1,16 +1,16 @@
 library ball;
 
 import 'package:box2d/box2d.dart';
-import 'package:gamelib/game.dart';
+import 'body_object.dart';
 
-class Pad extends GameObject{
-  Body body;
-  World world;
+class Pad extends BodyObject{
+  World _world;
+  num _to = 50;
   num _topspeed;
   num _height;
   num _width;
 
-  Pad(String name, this.world, {
+  Pad(String name, World world, {
       num x: 50,
       num y: 95,
       num height: 2,
@@ -19,40 +19,37 @@ class Pad extends GameObject{
         _height = height,
         _width = width,
         _topspeed = topspeed,
-        super(name,'pad'){
-    var bodydef = new BodyDef();
+        _world = world,
+        super(name,'pad', x:x, y:y){
     bodydef.type = BodyType.KINEMATIC;
-    bodydef.position = new vec2(x, y);
 
-    body = world.createBody(bodydef);
     var shape = new PolygonShape();
     shape.setAsBox(width/2-height/2,height/2);
-    body.createFixtureFromShape(shape);
+    shapes.add(shape);
 
     var shape2 = new CircleShape();
     shape2.radius = height/2;
     shape2.position.x = (width - height)/2;
-    body.createFixtureFromShape(shape2);
+    shapes.add(shape2);
 
     var shape3 = new CircleShape();
     shape3.radius = height/2;
     shape3.position.x = (width - height)/-2;
-    body.createFixtureFromShape(shape3);
+    shapes.add(shape3);
+
+    createBody(world);
   }
 
-  get x => body.position.x;
-  get y => body.position.y;
+  num get to => _to;
+  set to(to) => _to = _clamp(to, _width / 2, 100 - _width / 2);
 
-  void moveTo(num to){
-    to = _clamp(to, _width / 2, 100 - _width / 2);
-    num vx = _clamp((to - x) * world.timestep.inv_dt, -_topspeed, _topspeed);
+  void preStep(){
+    num vx = _clamp((_to - x) * _world.timestep.inv_dt, -_topspeed, _topspeed);
     body.linearVelocity = new vec2(vx, 0);
   }
 
   Map toGameState(){
     var state = super.toGameState();
-    state['x'] = x;
-    state['y'] = y;
     state['height'] = _height;
     state['width'] = _width;
     return state;

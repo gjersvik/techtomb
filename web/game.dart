@@ -41,16 +41,21 @@ class Game{
   postState(TakeState callback) => _takeState = callback;
 
   _gameloop(event){
-    pad.moveTo(padAction.value * 100);
+    if(padAction.triggerd){
+      pad.to = padAction.value * 100;
+    }
+
+    pad.preStep();
     world.step(0.016 , 10, 10);
+
     _takeState(event['gametime'], objects.toGameState());
   }
 
   _createWall(){
-    var shape = new PolygonShape();
-    shape.setAsBox(90,20);
     var body = new BodyDef();
     body.type = BodyType.STATIC;
+
+    var shape = new PolygonShape();
 
     shape.setAsBox(70,10);
     body.position = new vec2(50, -10);

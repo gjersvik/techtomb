@@ -2,14 +2,12 @@ library ball;
 
 import 'dart:math' as Math;
 import 'package:box2d/box2d.dart';
-import 'package:gamelib/game.dart';
+import 'body_object.dart';
 
-class Ball extends GameObject{
-  Body body;
-  Fixture fixture;
+class Ball extends BodyObject{
+  num _size;
   num _speed;
   num _angle;
-
 
   Ball(String name, World world, {
       num x: 50,
@@ -17,38 +15,24 @@ class Ball extends GameObject{
       num size: 1,
       num speed: 60,
       num angle: 1}):
-      _speed = speed,
-      _angle = angle,
-      super(name,'ball'){
-    var ball_body = new BodyDef();
-    ball_body.type = BodyType.DYNAMIC;
-    ball_body.position = new vec2(x, y);
-
-    body = world.createBody(ball_body);
-
-    var fix = new FixtureDef();
-    fix.density = 1;
-    fix.restitution = 1;
-    fix.friction = 0;
-    fix.shape = new CircleShape();
-    fix.shape.radius = size;
-
-    fixture = body.createFixture(fix);
-
+        _size = size,
+        _speed = speed,
+        _angle = angle,
+        super(name,'ball', x:x, y:y){
+    var shape = new CircleShape();
+    shape.radius = _size;
+    shapes.add(shape);
+    createBody(world);
     _updateSpeed(_speed,_angle);
   }
 
   Map toGameState(){
     var state = super.toGameState();
-    state['x'] = x;
-    state['y'] = y;
     state['size'] = size;
     return state;
   }
 
-  get x => body.position.x;
-  get y => body.position.y;
-  get size => fixture.shape.radius;
+  get size => _size;
 
   _updateSpeed(speed,angle){
     var v = new vec2();
