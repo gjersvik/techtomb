@@ -3,9 +3,7 @@ import 'game/ball.dart';
 import 'game/pad.dart';
 
 import 'dart:math' as Math;
-import 'package:box2d/box2d.dart';
-
-import 'package:gamelib/game.dart';
+import 'package:HtmlBlock/game.dart';
 
 typedef void TakeState(num gametime, Map<String, dynamic> state);
 

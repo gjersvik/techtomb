@@ -1,7 +1,4 @@
-library body_object;
-
-import 'package:box2d/box2d.dart';
-import 'package:gamelib/game.dart';
+part of htmlblock_game;
 
 class BodyObject extends GameObject{
   Body body;

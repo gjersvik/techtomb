@@ -1,7 +1,6 @@
 library ball;
 
-import 'package:box2d/box2d.dart';
-import 'body_object.dart';
+import 'package:HtmlBlock/game.dart';
 
 class Pad extends BodyObject{
   World _world;

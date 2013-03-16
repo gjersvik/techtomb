@@ -1,8 +1,7 @@
 library ball;
 
 import 'dart:math' as Math;
-import 'package:box2d/box2d.dart';
-import 'body_object.dart';
+import 'package:HtmlBlock/game.dart';
 
 class Ball extends BodyObject{
   num _size;
