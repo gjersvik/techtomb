@@ -8,3 +8,4 @@ export 'package:gamelib/game.dart';
 
 part 'src/game/body_object.dart';
 part 'src/game/body_objects.dart';
+part 'src/game/collision.dart';

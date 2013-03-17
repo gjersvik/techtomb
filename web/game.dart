@@ -11,6 +11,7 @@ class Game{
   World world;
   Loop loop;
   Actions actions;
+  Collision collision;
   AnalogAction padAction;
   BodyObjects objects;
   Pad pad;
@@ -20,7 +21,9 @@ class Game{
       world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
       loop = new Loop(new TimerRunner()),
       actions = new Actions(),
+      collision = new Collision(),
       objects = new BodyObjects(){
+    world.contactListener = collision;
     padAction = actions.add(new AnalogAction('PadPosition'));
     padAction.value = 0.5;
     padAction.reset();

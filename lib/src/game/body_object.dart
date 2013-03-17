@@ -37,10 +37,8 @@ class BodyObject extends GameObject{
   void preStep(){}
   void postStep(){}
 
-  bool preContact(Body other) => true;
-  void postContact(Body other){}
-  bool preContactObject(BodyObject other) => true;
-  void postContactObject(BodyObject other){}
+  void preContact(Contact contact, Fixture other){}
+  void postContact(Contact contact, Fixture other, ContactImpulse impulse){}
 
   Map toGameState(){
     var state = super.toGameState();
