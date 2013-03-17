@@ -1,12 +1,12 @@
 library ball;
 
-import 'dart:math' as Math;
 import 'package:HtmlBlock/game.dart';
 
 class Ball extends BodyObject{
   num _size;
   num _speed;
   num _angle;
+  bool _recalcSpeed = false;
 
   Ball(String name, World world, {
       num x: 50,
@@ -16,13 +16,24 @@ class Ball extends BodyObject{
       num angle: 1}):
         _size = size,
         _speed = speed,
-        _angle = angle,
+        _angle = angle.toDouble(),
         super(name,'ball', x:x, y:y){
     var shape = new CircleShape();
     shape.radius = _size;
     shapes.add(shape);
     createBody(world);
     _updateSpeed(_speed,_angle);
+  }
+
+  void postContact(Contact contact, Fixture other, ContactImpulse impulse){
+    _recalcSpeed = true;
+  }
+
+  void postStep(){
+    if(_recalcSpeed == true){
+      _angle = atan(body.linearVelocity.y, body.linearVelocity.x);
+      _updateSpeed(_speed,_angle);
+    }
   }
 
   Map toGameState(){
@@ -35,8 +46,8 @@ class Ball extends BodyObject{
 
   _updateSpeed(speed,angle){
     var v = new vec2();
-    v.x = speed * Math.cos(angle);
-    v.y = speed * Math.sin(angle);
+    v.x = speed * cos(angle);
+    v.y = speed * sin(angle);
     body.linearVelocity = v;
     _speed = speed;
     _angle = angle;
