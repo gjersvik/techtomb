@@ -221,3 +221,4 @@ pip-log.txt
 packages
 */packages
 *.dart.js*
+pubspec.lock
