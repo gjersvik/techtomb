@@ -1,10 +1,9 @@
 part of gamelib_game;
 
-class GameObject{
-  final String name;
+class GameObject extends NamedObject{
   final String type;
 
-  GameObject(this.name,this.type);
+  GameObject(name,this.type): super(name);
 
   Map<String, dynamic> toGameState() => {'type' :type};
 }
