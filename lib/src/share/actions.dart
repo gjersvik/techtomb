@@ -1,4 +1,4 @@
-part of gamelib_game;
+part of gamelib_share;
 
 class Actions {
   Map<String,TriggerAction> actions;

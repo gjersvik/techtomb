@@ -1,7 +1,7 @@
 library analog_action_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:gamelib/game.dart';
+import 'package:gamelib/share.dart';
 
 main(){
   group('AnalogAction:',() {

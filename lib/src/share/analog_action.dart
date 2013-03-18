@@ -1,4 +1,4 @@
-part of gamelib_game;
+part of gamelib_share;
 
 class AnalogAction extends TriggerAction{
   double _value;
