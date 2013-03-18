@@ -1,10 +1,12 @@
 library block;
 
 import 'package:HtmlBlock/game.dart';
+import 'ball.dart';
 
 class Block extends BodyObject{
   num _height;
   num _width;
+  bool _hit = false;
 
   Block(String name, World world, {
       num x: 50,
@@ -21,6 +23,18 @@ class Block extends BodyObject{
     shapes.add(shape);
 
     createBody(world);
+  }
+
+  void postContact(Contact contact, Fixture other, ContactImpulse impulse){
+    if(other.userData is Ball){
+      _hit = true;
+    }
+  }
+
+  postStep(){
+    if(_hit){
+      destroy();
+    }
   }
 
   Map toGameState(){
