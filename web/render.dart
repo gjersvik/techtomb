@@ -3,17 +3,18 @@ library render;
 import 'dart:html';
 import 'dart:math';
 
-import 'package:gamelib/render.dart';
+import 'package:gamelib/render_html.dart';
 
 class Render{
   CanvasElement element;
   CanvasRenderingContext2D context;
   Loop loop;
 
-  Map _state = {};
+  Timeline _state;
 
   Render(tag):
-    loop = new Loop(new AnimationRunner()){
+    loop = new Loop(new AnimationRunner()),
+    _state = new Timeline(50){
     var size = min(window.innerHeight,window.innerWidth);
     element = query(tag);
     context = element.getContext('2d');
@@ -23,17 +24,22 @@ class Render{
 
     context.scale(size / 100, size / 100);
 
+    loop.callbacks.add((e){
+      e['gametime'] -= 0.075;
+      e['gamestate'] = _state.get(e['gametime']);
+    });
+
     loop.callbacks.add(_paint);
   }
 
   start() => loop.start();
 
-  addState(num gametime, Map state) => _state = state;
+  addState(num time, Map state) => _state.add(time, state);
 
-  void _paint(_){
+  void _paint(e){
     context.clearRect(0, 0, 100, 100);
 
-    _state.forEach((key, value){
+    e['gamestate'].forEach((key, value){
       if(value['type'] == 'ball'){
         _paintBall(value);
       }
