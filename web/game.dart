@@ -10,9 +10,9 @@ typedef void TakeState(num gametime, Map<String, dynamic> state);
 class Game{
   World world;
   Loop loop;
-  Actions actions;
+  GameActions actions;
   Collision collision;
-  AnalogAction padAction;
+  NubAction padAction;
   BodyObjects objects;
   Pad pad;
   TakeState _takeState;
@@ -20,11 +20,11 @@ class Game{
   Game():
       world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
       loop = new Loop(new TimerRunner()),
-      actions = new Actions(),
+      actions = new GameActions(),
       collision = new Collision(),
       objects = new BodyObjects(){
     world.contactListener = collision;
-    padAction = actions.add(new AnalogAction('PadPosition'));
+    padAction = actions.add(new NubAction('PadPosition'));
     padAction.value = 0.5;
     padAction.reset();
     _createWall();
@@ -37,12 +37,12 @@ class Game{
 
   start() => loop.start();
 
-  addActions(List<Map<String, dynamic>> state) => actions.data = state;
+  addActions(Map<String, dynamic> state) => actions.fromMap(state);
 
   postState(TakeState callback) => _takeState = callback;
 
   _gameloop(event){
-    if(padAction.triggerd){
+    if(padAction.changed){
       pad.to = padAction.value * 100;
     }
 

@@ -1,18 +1,18 @@
 library input;
 
 import 'dart:html';
-import 'package:gamelib/game.dart';
+import 'package:gamelib/input.dart';
 
-typedef void TakeActions(List<Map<String, dynamic>> state);
+typedef void TakeActions(Map<String, dynamic> state);
 
 class Input{
   Element element;
   TakeActions _takeActions;
-  Actions actions;
+  InputActions actions;
 
-  Input(String selector): actions = new Actions(){
+  Input(String selector): actions = new InputActions(){
     element = query(selector);
-    AnalogAction pad = actions.add(new AnalogAction('PadPosition'));
+    NubAction pad = actions.add(new NubAction('PadPosition'));
 
     element.onMouseMove.listen((e){
       pad.value = e.clientX / element.clientWidth;
@@ -23,11 +23,7 @@ class Input{
   pushActions(TakeActions callback) => _takeActions = callback;
 
   _sendActions() {
-    var list = actions.data;
-    if(list.isEmpty){
-      return;
-    }
+    _takeActions(actions.toMap());
     actions.reset();
-    _takeActions(list);
   }
 }
