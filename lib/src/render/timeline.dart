@@ -8,7 +8,7 @@ class Timeline{
 
   void add(num time, Map state){
     _states.addFirst(new _TimelineState(time,state));
-    if(_states.length >= size){
+    if(_states.length > size){
       _states.removeLast();
     }
   }
@@ -58,7 +58,7 @@ class Timeline{
     return value < 0.5? a : b;
   }
 
-  num _interpolateNum(num a,num b,num value) => a * value + b * (1 - value);
+  num _interpolateNum(num a,num b,num value) => b * value + a * (1 - value);
 }
 
 class _TimelineState{
