@@ -9,8 +9,8 @@ class Block extends BodyObject{
   Block(String name, World world, {
       num x: 50,
       num y: 50,
-      num height: 1.9,
-      num width: 3.8}):
+      num height: 2.4,
+      num width: 4.8}):
         _height = height,
         _width = width,
         super(name,'block', x:x, y:y){

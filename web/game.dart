@@ -32,7 +32,7 @@ class Game{
 
     pad = objects.add(new Pad('pad', world));
     objects.add(new Ball('ball1', world));
-    objects.add(new Block('block1', world));
+    _createBlocks();
 
     loop.callbacks.add(_gameloop);
   }
@@ -72,5 +72,21 @@ class Game{
     world.createBody(body).createFixtureFromShape(shape);
     body.position = new vec2(110, 50);
     world.createBody(body).createFixtureFromShape(shape);
+  }
+
+  _createBlocks() {
+    var i = 0;
+    var x = 0;
+    var y = 0;
+    while(y < 20){
+      while(x < 20){
+        i += 1;
+        objects.add(new Block('block$i', world, x: 2.5 +(x * 5), y: 1.25 + (y * 2.5)));
+        x += 1;
+      }
+      x = 0;
+      y += 1;
+    }
+
   }
 }
