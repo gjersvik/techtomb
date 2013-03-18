@@ -5,10 +5,6 @@ import 'package:gamelib/share.dart';
 
 main(){
   group('Action:',() {
-    test('have a name.',() {
-      var action = new Action('TestAction1','test');
-      expect(action.name, 'TestAction1');
-    });
     test('have a type',() {
       var action = new Action('TestAction1','test');
       expect(action.type, 'test');

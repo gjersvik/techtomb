@@ -1,11 +1,10 @@
 part of gamelib_share;
 
-class Action {
-  final String name;
+class Action extends NamedObject{
   final String type;
   bool changed = false;
   var _value;
-  Action(this.name, this.type);
+  Action(name, this.type): super(name);
 
   get value => _value;
   set value(value){
