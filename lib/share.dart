@@ -1,6 +1,7 @@
 library gamelib_share;
 
 part 'src/share/named_object.dart';
+part 'src/share/named_objects.dart';
 
 part 'src/share/loop.dart';
 part 'src/share/runner.dart';
