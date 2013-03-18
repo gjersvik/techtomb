@@ -1,12 +1,12 @@
 part of gamelib_share;
 
-class NamedObjects{
-  Map<String, NamedObject> objects = {};
+class NamedObjects<T extends NamedObject>{
+  Map<String, T> objects = {};
 
-  NamedObject get(String name) => objects[name];
-  NamedObject add(NamedObject o) => objects[o.name] = o;
-  NamedObject remove(String name) => objects.remove(name);
-  NamedObject removeObject(NamedObject o) => remove(o.name);
+  T get(String name) => objects[name];
+  T add(T o) => objects[o.name] = o;
+  T remove(String name) => objects.remove(name);
+  T removeObject(T o) => remove(o.name);
 }
 
 

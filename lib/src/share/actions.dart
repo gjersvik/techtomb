@@ -1,31 +1,5 @@
 part of gamelib_share;
 
-class Actions {
-  Map<String,TriggerAction> actions;
-
-  Actions():actions = {};
-
-  TriggerAction add(TriggerAction action) => actions[action.name] = action;
-
-  List<Map> get data{
-    List data = [];
-
-    actions.values.forEach((v){
-      var temp = v.data;
-      if(temp.isEmpty == false){
-        data.add(temp);
-      }
-    });
-
-    return data;
-  }
-  void set data(List<Map> data){
-    data.forEach((value){
-      if(actions.containsKey(value['name'])){
-        actions[value['name']].data = value;
-      }
-    });
-  }
-
-  reset() => actions.forEach((k, v) =>v.reset());
+class Actions extends NamedObjects<Action> {
+  reset() => objects.forEach((k, v) =>v.reset());
 }
