@@ -10,10 +10,10 @@ class Ball extends BodyObject{
 
   Ball(String name, World world, {
       num x: 50,
-      num y: 50,
+      num y: 90,
       num size: 1,
       num speed: 60,
-      num angle: 1}):
+      num angle: -1}):
         _size = size,
         _speed = speed,
         _angle = angle.toDouble(),

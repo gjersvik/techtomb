@@ -1,6 +1,7 @@
 library game;
 import 'game/ball.dart';
 import 'game/pad.dart';
+import 'game/block.dart';
 
 import 'dart:math' as Math;
 import 'package:HtmlBlock/game.dart';
@@ -31,6 +32,7 @@ class Game{
 
     pad = objects.add(new Pad('pad', world));
     objects.add(new Ball('ball1', world));
+    objects.add(new Block('block1', world));
 
     loop.callbacks.add(_gameloop);
   }

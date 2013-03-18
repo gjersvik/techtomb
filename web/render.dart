@@ -46,6 +46,9 @@ class Render{
       if(value['type'] == 'pad'){
         _paintPad(value);
       }
+      if(value['type'] == 'block'){
+        _paintBlock(value);
+      }
     });
   }
 
@@ -72,6 +75,10 @@ class Render{
     context.arc(x - (w - h) / 2, y, h / 2, 0, PI*2, false);
     context.arc(x + (w - h) / 2, y, h / 2, 0, PI*2, false);
     context.fill();
+  }
 
+  void _paintBlock(Map block){
+    context.fillStyle = 'white';
+    context.fillRect(block['x'] - block['width'] / 2 , block['y'] - block['height'] / 2, block['width'], block['height']);
   }
 }
