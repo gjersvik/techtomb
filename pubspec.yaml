@@ -1,5 +1,7 @@
 name: gamelib
-description: A sample command-line application
+version: 0.1.0
+author: Ole Martin Gjersvik
+description: A gamelib for Ole Martin Gjersvik
 dependencies:
   unittest: any
   browser: any
