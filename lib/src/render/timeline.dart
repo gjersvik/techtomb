@@ -22,8 +22,8 @@ class Timeline{
     if(time >= _states.first.time ){
       return _states.first.state;
     }
-    _TimelineState small = _states.firstMatching((state) => state.time <= time);
-    _TimelineState big = _states.lastMatching((state) => state.time >= time);
+    _TimelineState small = _states.firstWhere((state) => state.time <= time);
+    _TimelineState big = _states.lastWhere((state) => state.time >= time);
     if(big == small){
       return big.state;
     }
