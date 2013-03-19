@@ -2,9 +2,5 @@ name: gamelib
 version: 0.1.0
 author: Ole Martin Gjersvik
 description: A gamelib for Ole Martin Gjersvik
-dependencies:
+dev_dependencies:
   unittest: any
-  browser: any
-
-#dependencies:
-#  unittest: any
