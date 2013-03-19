@@ -78,10 +78,10 @@ class Game{
     var i = 0;
     var x = 0;
     var y = 0;
-    while(y < 20){
-      while(x < 20){
+    while(y < 10){
+      while(x < 10){
         i += 1;
-        objects.add(new Block('block$i', world, x: 2.5 +(x * 5), y: 1.25 + (y * 2.5)));
+        objects.add(new Block('block$i', world, x: 27.5 +(x * 5), y: 26.25 + (y * 2.5)));
         x += 1;
       }
       x = 0;
