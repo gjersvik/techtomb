@@ -34,6 +34,21 @@ main(){
       objects.add(new GameObject('TestName','TestType'));
       expect(objects.toGameState(), {'TestName':{'type': 'TestType'}});
     });
+    test('forward events from children.',() {
+      var objects = new GameObjects();
+      var object = objects.add(new GameObject('TestName','TestType'));
+      var listen = false;
+      objects.on.listen((_)=> listen = true);
+
+      object.fire('testevent');
+      expect(listen, isTrue);
+    });
+    test('destroying object removes it from the list.',() {
+      var objects = new GameObjects();
+      var object = objects.add(new GameObject('TestName','TestType'));
+      object.destroy();
+      expect(objects.get('TestName'), isNull);
+    });
   });
 }
 
