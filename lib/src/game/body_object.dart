@@ -5,7 +5,6 @@ class BodyObject extends GameObject{
   BodyDef bodydef;
   FixtureDef fixturedef;
   List<Shape> shapes;
-  bool removeme = false;
 
   BodyObject(String name, String tags, {
     x: 50,
@@ -33,8 +32,8 @@ class BodyObject extends GameObject{
   }
 
   void destroy() {
+    super.destroy();
     body.world.destroyBody(body);
-    removeme = true;
   }
 
   get x => body.position.x;

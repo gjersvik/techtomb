@@ -1,15 +1,6 @@
 part of htmlblock_game;
 
-class BodyObjects extends GameObjects {
-  void preStep() => objects.forEach((_, object) => object.preStep());
-  void postStep(){
-    var delete = [];
-    objects.forEach((_,BodyObject object){
-      object.postStep();
-      if(object.removeme){
-        delete.add(object.name);
-      }
-    });
-    delete.forEach((name)=> remove(name));
-  }
+class BodyObjects<T extends BodyObject> extends GameObjects<T> {
+  void preStep() => objects.values.toList().forEach((object) => object.preStep());
+  void postStep() => objects.values.toList().forEach((object) => object.postStep());
 }
