@@ -40,10 +40,11 @@ class Pad extends BodyObject{
   }
 
   num get to => _to;
-  set to(to) => _to = _clamp(to, _width / 2, 100 - _width / 2);
+  set to(num to) => _to = to.clamp(_width / 2, 100 - (_width / 2));
 
   void preStep(){
-    num vx = _clamp((_to - x) * _world.timestep.inv_dt, -_topspeed, _topspeed);
+    num vx = (_to - x) * _world.timestep.inv_dt;
+    vx.clamp(-_topspeed, _topspeed);
     body.linearVelocity = new vec2(vx, 0);
   }
 
@@ -52,16 +53,6 @@ class Pad extends BodyObject{
     state['height'] = _height;
     state['width'] = _width;
     return state;
-  }
-
-  _clamp(value, min, max){
-    if( value < min){
-      return min;
-    }
-    if( value > max){
-      return max;
-    }
-    return value;
   }
 }
 
