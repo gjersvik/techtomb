@@ -1,8 +1,10 @@
 library ball;
 
 import 'package:HtmlBlock/game.dart';
+import 'dart:math' show PI;
 
 class Ball extends BodyObject{
+  const MIN_ANGLE = 10 * PI / 180;
   num _size;
   num _speed;
   num _angle;
@@ -32,6 +34,11 @@ class Ball extends BodyObject{
   void postStep(){
     if(_recalcSpeed == true){
       _angle = atan(body.linearVelocity.y, body.linearVelocity.x);
+      _angle = _splitt(_angle, -PI, MIN_ANGLE);
+      _angle = _splitt(_angle, -PI / 2, MIN_ANGLE);
+      _angle = _splitt(_angle, 0, MIN_ANGLE);
+      _angle = _splitt(_angle, PI / 2, MIN_ANGLE);
+      _angle = _splitt(_angle, PI, MIN_ANGLE);
       _updateSpeed(_speed,_angle);
     }
   }
@@ -52,4 +59,16 @@ class Ball extends BodyObject{
     _speed = speed;
     _angle = angle;
   }
+
+  num _splitt(num x, num center, num pluss_minus){
+    if(x >= center + pluss_minus || x <= center - pluss_minus) {
+      return x;
+    }
+    if(x >= center) {
+      return center + pluss_minus;
+    }else{
+      return center - pluss_minus;
+    }
+  }
+
 }

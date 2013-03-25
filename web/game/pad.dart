@@ -1,4 +1,4 @@
-library ball;
+library pad;
 
 import 'package:HtmlBlock/game.dart';
 
