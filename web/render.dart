@@ -49,6 +49,9 @@ class Render{
       if(value['type'] == 'block'){
         _paintBlock(value);
       }
+      if(value['type'] == 'score'){
+        print(value['score']);
+      }
     });
   }
 

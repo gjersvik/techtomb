@@ -17,6 +17,9 @@ class Game{
   BodyObjects objects;
   Pad pad;
   TakeState _takeState;
+  num score = 0;
+
+  num _gametime = 0;
 
   Game():
       world = new World(new vec2(0, 0), true, new DefaultWorldPool()),
@@ -35,6 +38,12 @@ class Game{
     _createBlocks();
 
     loop.callbacks.add(_gameloop);
+
+    objects.on.listen((e){
+      if(e.name == 'destroying' && e.object.type == 'block'){
+        score += 1000/(_gametime/10+1);
+      }
+    });
   }
 
   start() => loop.start();
@@ -44,6 +53,7 @@ class Game{
   postState(TakeState callback) => _takeState = callback;
 
   _gameloop(event){
+    _gametime = event['gametime'];
     if(padAction.changed){
       pad.to = padAction.value * 100;
     }
@@ -52,7 +62,10 @@ class Game{
     world.step(0.016 , 10, 10);
     objects.postStep();
 
-    _takeState(event['gametime'], objects.toGameState());
+    var gamestate = objects.toGameState();
+    gamestate['score'] = {'type': 'score','score': score};
+
+    _takeState(event['gametime'], gamestate);
   }
 
   _createWall(){
