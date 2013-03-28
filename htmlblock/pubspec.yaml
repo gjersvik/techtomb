@@ -3,8 +3,9 @@ version: 0.1.0
 description: A sample web application
 dependencies:
   gamelib:
-    git: git://github.com/gjersvik/gamelib.git
-  box2d: any
+    path: ../gamelib
+  box2d:
+    git: git://github.com/darty-grits/dartbox2d.git
   browser: any
 dev_dependencies:
   unittest: any
