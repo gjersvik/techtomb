@@ -1,0 +1,7 @@
+name: rougeplanet
+author: Ole Martin Gjersvik
+description: A sample web application
+dependencies:
+  gamelib:
+    path: ../gamelib
+  browser: any
