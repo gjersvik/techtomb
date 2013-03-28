@@ -1,16 +1,16 @@
-import 'dart:html';
+//import 'input.dart';
+//import 'game.dart';
+import 'render.dart';
 
 void main() {
-  query("#sample_text_id")
-    ..text = "Click me!"
-    ..onClick.listen(reverseText);
+  //var input = new Input('#htmlblocks');
+  //var game = new Game();
+  var render = new Render('#rougeplanet');
+
+  //input.pushActions(game.addActions);
+  //game.postState(render.addState);
+
+  //game.start();
+  render.start();
 }
 
-void reverseText(MouseEvent event) {
-  var text = query("#sample_text_id").text;
-  var buffer = new StringBuffer();
-  for (int i = text.length - 1; i >= 0; i--) {
-    buffer.write(text[i]);
-  }
-  query("#sample_text_id").text = buffer.toString();
-}
