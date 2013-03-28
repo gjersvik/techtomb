@@ -1,2 +1,5 @@
 # Dart
-*/packages
+*packages
+
+#gamelib
+/gamelib/pubspec.lock
