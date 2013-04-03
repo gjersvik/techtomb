@@ -24,12 +24,12 @@ class Render{
 
     context.scale(size / 100, size / 100);
 
-    loop.callbacks.add((e){
+    loop[0].listen((e){
       e['gametime'] -= 0.075;
       e['gamestate'] = _state.get(e['gametime']);
     });
 
-    loop.callbacks.add(_paint);
+    loop[100].listen(_paint);
   }
 
   start() => loop.start();

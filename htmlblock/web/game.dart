@@ -37,7 +37,7 @@ class Game{
     objects.add(new Ball('ball1', world));
     _createBlocks();
 
-    loop.callbacks.add(_gameloop);
+    loop[0].listen(_gameloop);
 
     objects.on.listen((e){
       if(e.name == 'destroying' && e.object.type == 'block'){
