@@ -52,9 +52,9 @@ main(){
         return (_) => list.add(num);
       }
 
-      test.loop.callbacks.add(createCallback(1));
-      test.loop.callbacks.add(createCallback(2));
-      test.loop.callbacks.add(createCallback(3));
+      test.loop[1].listen(createCallback(3));
+      test.loop[0].listen(createCallback(2));
+      test.loop[-1].listen(createCallback(1));
 
       test.loop.start();
       test.tic();
@@ -65,8 +65,8 @@ main(){
     test('Loop event data propecate thru the loop',() {
       var test = new LoopTestData();
 
-      test.loop.callbacks.add((e) => e['testdata'] = 'somevalue');
-      test.loop.callbacks.add((e) => expect(e['testdata'],'somevalue'));
+      test.loop[0].listen((e) => e['testdata'] = 'somevalue');
+      test.loop[0].listen((e) => expect(e['testdata'],'somevalue'));
 
       test.loop.start();
       test.tic();
@@ -75,7 +75,7 @@ main(){
       var test = new LoopTestData();
       var count = null;
 
-      test.loop.callbacks.add((e) => count = e['ticCount']);
+      test.loop[0].listen((e) => count = e['ticCount']);
 
       test.loop.start();
       test.tic();
@@ -88,7 +88,7 @@ main(){
     test('end() reset count',() {
       var test = new LoopTestData();
       var count = null;
-      test.loop.callbacks.add((e) => count = e['ticCount']);
+      test.loop[0].listen((e) => count = e['ticCount']);
 
       test.loop.start();
       test.tic();
@@ -103,7 +103,7 @@ main(){
     test('pause() dont reset count',() {
       var test = new LoopTestData();
       var count = null;
-      test.loop.callbacks.add((e) => count = e['ticCount']);
+      test.loop[0].listen((e) => count = e['ticCount']);
 
       test.loop.start();
       test.tic();

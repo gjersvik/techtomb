@@ -1,5 +1,8 @@
 library gamelib_share;
 
+import 'dart:async';
+import 'dart:collection';
+
 part 'src/share/named_object.dart';
 part 'src/share/named_objects.dart';
 

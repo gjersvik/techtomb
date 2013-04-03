@@ -2,36 +2,43 @@ part of gamelib_share;
 
 class Loop {
   final Runner runner;
-  List callbacks;
+  SplayTreeMap<int,StreamController<Map>> _streams;
   Stopwatch _gametime;
   int _count = 0;
 
   Loop(this.runner):
-    callbacks = new List(),
+    _streams = new SplayTreeMap(),
     _gametime = new Stopwatch();
+
+  Stream<Map> operator [](int i){
+     if(!_streams.containsKey(i)){
+       _streams[i] = new StreamController.broadcast();
+     }
+     return _streams[i].stream;
+  }
 
   _tic(){
     _count += 1;
-    var loop_event = {};
-    loop_event['gametime'] = _gametime.elapsedTicks / _gametime.frequency;
-    loop_event['ticCount'] = _count;
-    callbacks.forEach((f) => f(loop_event) );
+    var loop_event = {
+        'gametime': _gametime.elapsedTicks / _gametime.frequency,
+        'ticCount': _count
+    };
+    _streams.forEach((_,c) => c.add(loop_event));
   }
 
-  start() {
+  void start() {
     _gametime.start();
     runner.start(_tic);
   }
 
-  pause() {
+  void pause() {
     _gametime.stop();
     runner.stop();
   }
 
-  end() {
-    _gametime.stop();
+  void end() {
+    pause();
     _gametime.reset();
     _count = 0;
-    runner.stop();
   }
 }
