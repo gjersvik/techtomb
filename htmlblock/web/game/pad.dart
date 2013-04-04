@@ -44,7 +44,7 @@ class Pad extends BodyObject{
 
   void preStep(){
     num vx = (_to - x) * _world.timestep.inv_dt;
-    vx.clamp(-_topspeed, _topspeed);
+    vx = vx.clamp(-_topspeed, _topspeed);
     body.linearVelocity = new vec2(vx, 0);
   }
 
