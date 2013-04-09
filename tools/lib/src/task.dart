@@ -5,5 +5,6 @@ abstract class Task {
 
   Task(this.name);
 
-  void run(ArgResults results);
+  void setup(ArgParser parser);
+  Future<int> run(ArgResults results);
 }
