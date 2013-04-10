@@ -10,7 +10,7 @@ main(){
   var prooptions = new ProcessOptions();
   prooptions.workingDirectory = new Directory.current().path;
 
-  Process.start(options.executable, args).then(setupProcess);
+  Process.start(options.executable, args, prooptions).then(setupProcess);
 }
 
 setupProcess(Process pro){
