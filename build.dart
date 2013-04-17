@@ -12,9 +12,9 @@ Future<int> run(exec, args, working_dir){
   exec = dart_sdk.append(exec).toNativePath();
 
   Process.start(exec, args, options).then((Process pro){
-    pro.stdin.writeStream(stdin);
-    stderr.writeStream(pro.stderr);
-    stdout.writeStream(pro.stdout);
+    pro.stdin.addStream(stdin);
+    stderr.addStream(pro.stderr);
+    stdout.addStream(pro.stdout);
     pro.exitCode.then((code) => completer.complete(code));
   });
 

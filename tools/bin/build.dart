@@ -12,7 +12,7 @@ void main(){
   server.setup(args.addCommand(server.name));
 
   var result = args.parse(new Options().arguments);
-  if(result.command.name == server.name){
+  if(result.command != null && result.command.name == server.name){
     server.run(result.command).then((code)=>exit(code));
   }
 }
