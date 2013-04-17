@@ -1,8 +1,0 @@
-name: tools
-version: 0.1.0
-author: Ole Martin Gjersvik
-description: buildtools for techtomb
-dependencies:
-  hop: any
-dev_dependencies:
-  unittest: any

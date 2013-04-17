@@ -1,0 +1,10 @@
+name: techtomb
+version: 0.1.0
+author: Ole Martin Gjersvik
+description: A game and site from Ole Martin Gjersvik
+dependencies:
+  box2d: any
+  browser: any
+  hob: any
+dev_dependencies:
+  unittest: any
