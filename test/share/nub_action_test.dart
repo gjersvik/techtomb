@@ -1,7 +1,7 @@
 library nub_action_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:techtomb/share.dart';
+import 'package:techtomb/gamelib.dart';
 
 main(){
   group('NubAction:',() {

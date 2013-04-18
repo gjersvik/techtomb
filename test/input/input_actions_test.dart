@@ -1,7 +1,7 @@
 library input_actions_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:techtomb/input.dart';
+import 'package:techtomb/gamelib.dart';
 
 main(){
   group('InputActions:',() {

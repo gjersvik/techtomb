@@ -1,7 +1,7 @@
 library named_objects_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:techtomb/game.dart';
+import 'package:techtomb/gamelib.dart';
 
 main(){
   group('NamedObjects:',() {

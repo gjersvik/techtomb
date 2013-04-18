@@ -1,7 +1,7 @@
 library game_actions_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:techtomb/game.dart';
+import 'package:techtomb/gamelib.dart';
 
 main(){
   group('GameActions:',() {
