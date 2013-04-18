@@ -1,4 +1,4 @@
-part of htmlblock_game;
+part of techtomb_htmlblock;
 
 class BodyObject extends GameObject{
   Body body;
