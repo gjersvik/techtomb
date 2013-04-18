@@ -1,9 +1,4 @@
-library render;
-
-import 'dart:html';
-import 'dart:math';
-
-import 'package:techtomb/gamelib_html.dart';
+part of techtomb_htmlblock;
 
 class Render{
   CanvasElement element;
@@ -15,7 +10,7 @@ class Render{
   Render(tag):
     loop = new Loop(new AnimationRunner()),
     _state = new Timeline(50){
-    var size = min(window.innerHeight,window.innerWidth);
+    var size = Math.min(window.innerHeight,window.innerWidth);
     element = query(tag);
     context = element.getContext('2d');
 
@@ -58,7 +53,7 @@ class Render{
   void _paintBall(Map ball){
     context.fillStyle = 'yellow';
     context.beginPath();
-    context.arc(ball['x'], ball['y'], ball['size'], 0, PI*2, false);
+    context.arc(ball['x'], ball['y'], ball['size'], 0, Math.PI*2, false);
     context.fill();
   }
 
@@ -75,8 +70,8 @@ class Render{
         w - h,
         h);
     context.beginPath();
-    context.arc(x - (w - h) / 2, y, h / 2, 0, PI*2, false);
-    context.arc(x + (w - h) / 2, y, h / 2, 0, PI*2, false);
+    context.arc(x - (w - h) / 2, y, h / 2, 0, Math.PI*2, false);
+    context.arc(x + (w - h) / 2, y, h / 2, 0, Math.PI*2, false);
     context.fill();
   }
 

@@ -1,7 +1,4 @@
-library input;
-
-import 'dart:html';
-import 'package:techtomb/gamelib.dart';
+part of techtomb_htmlblock;
 
 typedef void TakeActions(Map<String, dynamic> state);
 

@@ -1,7 +1,4 @@
-library block;
-
-import 'package:techtomb/htmlblock.dart';
-import 'ball.dart';
+part of techtomb_htmlblock;
 
 class Block extends BodyObject{
   num _height;

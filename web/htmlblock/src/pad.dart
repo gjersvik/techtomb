@@ -1,6 +1,4 @@
-library pad;
-
-import 'package:techtomb/htmlblock.dart';
+part of techtomb_htmlblock;
 
 class Pad extends BodyObject{
   World _world;

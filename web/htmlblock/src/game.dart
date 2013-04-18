@@ -1,10 +1,4 @@
-library game;
-import 'game/ball.dart';
-import 'game/pad.dart';
-import 'game/block.dart';
-
-import 'dart:math' as Math;
-import 'package:techtomb/htmlblock.dart';
+part of techtomb_htmlblock;
 
 typedef void TakeState(num gametime, Map<String, dynamic> state);
 

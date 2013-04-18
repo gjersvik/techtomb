@@ -1,10 +1,7 @@
-library ball;
-
-import 'package:techtomb/htmlblock.dart';
-import 'dart:math' show PI;
+part of techtomb_htmlblock;
 
 class Ball extends BodyObject{
-  const MIN_ANGLE = 10 * PI / 180;
+  const MIN_ANGLE = 10 * Math.PI / 180;
   num _size;
   num _speed;
   num _angle;
@@ -34,11 +31,11 @@ class Ball extends BodyObject{
   void postStep(){
     if(_recalcSpeed == true){
       _angle = atan(body.linearVelocity.y, body.linearVelocity.x);
-      _angle = _splitt(_angle, -PI, MIN_ANGLE);
-      _angle = _splitt(_angle, -PI / 2, MIN_ANGLE);
+      _angle = _splitt(_angle, -Math.PI, MIN_ANGLE);
+      _angle = _splitt(_angle, -Math.PI / 2, MIN_ANGLE);
       _angle = _splitt(_angle, 0, MIN_ANGLE);
-      _angle = _splitt(_angle, PI / 2, MIN_ANGLE);
-      _angle = _splitt(_angle, PI, MIN_ANGLE);
+      _angle = _splitt(_angle, Math.PI / 2, MIN_ANGLE);
+      _angle = _splitt(_angle, Math.PI, MIN_ANGLE);
       _updateSpeed(_speed,_angle);
     }
   }
