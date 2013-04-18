@@ -1,8 +1,6 @@
-#WebStorm
+#IDES
 .idea
+.settings
 
 # Dart
 *packages
-
-#gamelib
-/gamelib/pubspec.lock
