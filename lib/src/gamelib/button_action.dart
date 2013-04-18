@@ -1,4 +1,4 @@
-part of gamelib_share;
+part of techtomb_gamelib;
 
 class ButtonAction extends Action{
   ButtonAction(name):super(name,'button');

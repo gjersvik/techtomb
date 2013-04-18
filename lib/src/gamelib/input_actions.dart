@@ -1,4 +1,4 @@
-part of game_input;
+part of techtomb_gamelib;
 
 class InputActions extends Actions{
   Map<String,dynamic> toMap(){

@@ -1,4 +1,4 @@
-part of gamelib_share;
+part of techtomb_gamelib;
 
 abstract class Runner {
   void start(Function tic);

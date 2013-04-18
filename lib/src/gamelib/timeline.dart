@@ -1,4 +1,4 @@
-part of gamelib_render;
+part of techtomb_gamelib;
 
 class Timeline{
   Queue<_TimelineState> _states;

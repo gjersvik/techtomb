@@ -1,4 +1,4 @@
-part of gamelib_render_html;
+part of techtomb_gamelib_html;
 
 class AnimationRunner extends Runner {
   var _tic = null;

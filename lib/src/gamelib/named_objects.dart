@@ -1,4 +1,4 @@
-part of gamelib_share;
+part of techtomb_gamelib;
 
 class NamedObjects<T extends NamedObject>{
   Map<String, T> objects = {};

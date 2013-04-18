@@ -1,4 +1,4 @@
-part of gamelib_game;
+part of techtomb_gamelib;
 
 class GameActions extends Actions{
   fromMap(Map map){

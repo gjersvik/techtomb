@@ -1,4 +1,4 @@
-part of gamelib_game;
+part of techtomb_gamelib;
 
 class GameObjects<T extends GameObject> extends NamedObjects<T>{
   Stream<GameEvent> on;
