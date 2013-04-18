@@ -1,12 +1,11 @@
-library render_test;
+library techtomb_test;
 
 import 'package:unittest/vm_config.dart';
 import 'package:unittest/unittest.dart';
 
-import 'render/timeline_test.dart' as TimelineTest;
-
+import 'gamelib/gamelib.dart' as Gamelib;
 main() {
   useVMConfiguration();
-
-  TimelineTest.main();
+  
+  Gamelib.main();
 }

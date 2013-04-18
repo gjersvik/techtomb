@@ -1,9 +1,6 @@
-library actions_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testActions(){
   group('Actions:',() {
     test('reset() resets all.',() {
       var actions = new Actions();

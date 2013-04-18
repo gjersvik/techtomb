@@ -1,9 +1,6 @@
-library switch_action_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testSwitchAction(){
   group('SwitchAction:',() {
     test('is of type switch.',() {
       var action = new SwitchAction('TestAction1');

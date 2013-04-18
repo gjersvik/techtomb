@@ -1,9 +1,6 @@
-library named_objects_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testNamedObjects(){
   group('NamedObjects:',() {
     test('add returns added object',() {
       var objects = new NamedObjects();

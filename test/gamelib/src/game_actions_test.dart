@@ -1,9 +1,6 @@
-library game_actions_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testGameActions(){
   group('GameActions:',() {
     test('fromMap() add value to all actions that exists.',() {
       var actions = new GameActions();

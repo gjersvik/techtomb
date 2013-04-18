@@ -1,9 +1,6 @@
-library timeline_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testTimeline(){
   group('Timeline:',() {
     test('will remove first of you put more than size.',() {
       var timeline = new Timeline(1);

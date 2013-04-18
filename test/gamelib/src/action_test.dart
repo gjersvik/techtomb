@@ -1,9 +1,6 @@
-library action_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testAction(){
   group('Action:',() {
     test('have a type',() {
       var action = new Action('TestAction1','test');

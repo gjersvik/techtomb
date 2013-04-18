@@ -1,9 +1,6 @@
-library button_action_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testButtonAction(){
   group('ButtonAction:',() {
     test('is of type button.',() {
       var action = new ButtonAction('TestAction1');

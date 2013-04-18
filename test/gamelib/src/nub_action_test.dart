@@ -1,9 +1,6 @@
-library nub_action_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testNubAction(){
   group('NubAction:',() {
     test('is of type nub.',() {
       var action = new NubAction('TestAction1');

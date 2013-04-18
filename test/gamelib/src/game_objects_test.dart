@@ -1,9 +1,6 @@
-library game_object_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testGameObjects(){
   group('GameObjects:',() {
     test('add returns added object',() {
       var objects = new GameObjects();

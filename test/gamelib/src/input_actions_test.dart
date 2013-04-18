@@ -1,9 +1,6 @@
-library input_actions_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:techtomb/gamelib.dart';
-
-main(){
+testInputActions(){
   group('InputActions:',() {
     test('toMap() returns a map of all changed actions',() {
       var actions = new InputActions();

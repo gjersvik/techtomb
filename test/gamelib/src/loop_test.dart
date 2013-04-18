@@ -1,10 +1,6 @@
-library loop_test;
+part of techtomb_gamelib_test;
 
-import 'package:unittest/unittest.dart';
-import 'package:unittest/mock.dart';
-import 'package:techtomb/gamelib.dart';
-
-class MockRunner extends Mock implements Runner{}
+class MockRunner extends Mock.Mock implements Runner{}
 
 class LoopTestData{
   Loop loop;
@@ -18,31 +14,31 @@ class LoopTestData{
 
   tic() {
     if(_tic == null) {
-      _tic = mock.getLogs(callsTo('start')).last.args[0];
+      _tic = mock.getLogs(Mock.callsTo('start')).last.args[0];
     }
     _tic();
   }
 }
 
-main(){
+testLoop(){
   group('Loop:',() {
     test('Loop.start() calls Runner.start() wit a tic function',() {
       var test = new LoopTestData();
       test.loop.start();
 
-      test.mock.getLogs(callsTo('start', new isInstanceOf<Function>())).verify(happenedOnce);
+      test.mock.getLogs(Mock.callsTo('start', new isInstanceOf<Function>())).verify(Mock.happenedOnce);
     });
     test('Loop.end() calls Runner.stop()',() {
       var test = new LoopTestData();
       test.loop.end();
 
-      test.mock.getLogs(callsTo('stop')).verify(happenedOnce);
+      test.mock.getLogs(Mock.callsTo('stop')).verify(Mock.happenedOnce);
     });
     test('Loop.pause() calls Runner.stop()',() {
       var test = new LoopTestData();
       test.loop.pause();
 
-      test.mock.getLogs(callsTo('stop')).verify(happenedOnce);
+      test.mock.getLogs(Mock.callsTo('stop')).verify(Mock.happenedOnce);
     });
     test('When the tic function is called all the callbacks gets runned',() {
       var test = new LoopTestData();
