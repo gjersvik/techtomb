@@ -6,9 +6,9 @@ class GameObject extends NamedObject{
   Stream<GameEvent> on;
 
   GameObject(name,this.type): super(name){
-    var ctrl = new StreamController.broadcast();
+    var ctrl = new StreamController();
     _sink = ctrl.sink;
-    on = ctrl.stream;
+    on = ctrl.stream.asBroadcastStream();
   }
 
   Map<String, dynamic> toGameState() => {'type' :type};

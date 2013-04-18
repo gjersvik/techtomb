@@ -3,18 +3,21 @@ part of gamelib_share;
 class Loop {
   final Runner runner;
   SplayTreeMap<int,StreamController<Map>> _streams;
+  Map<int,Stream<Map>> _liseners;
   Stopwatch _gametime;
   int _count = 0;
 
   Loop(this.runner):
     _streams = new SplayTreeMap(),
+    _liseners = new Map(),
     _gametime = new Stopwatch();
 
   Stream<Map> operator [](int i){
      if(!_streams.containsKey(i)){
-       _streams[i] = new StreamController.broadcast();
+       _streams[i] = new StreamController();
+       _liseners[i] = _streams[i].stream.asBroadcastStream();
      }
-     return _streams[i].stream;
+     return _liseners[i];
   }
 
   _tic(){

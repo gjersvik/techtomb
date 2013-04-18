@@ -6,9 +6,9 @@ class GameObjects<T extends GameObject> extends NamedObjects<T>{
   Map _subs;
 
   GameObjects():_subs = {}, super(){
-    var ctrl = new StreamController.broadcast();
+    var ctrl = new StreamController();
     _sink = ctrl.sink;
-    on = ctrl.stream;
+    on = ctrl.stream.asBroadcastStream();
     on.listen((e){
       if(e.name == 'destroying'){
         removeObject(e.object);
