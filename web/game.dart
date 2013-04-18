@@ -4,7 +4,7 @@ import 'game/pad.dart';
 import 'game/block.dart';
 
 import 'dart:math' as Math;
-import 'package:HtmlBlock/game.dart';
+import 'package:techtomb/htmlblock.dart';
 
 typedef void TakeState(num gametime, Map<String, dynamic> state);
 

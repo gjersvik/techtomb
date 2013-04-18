@@ -1,6 +1,6 @@
 library ball;
 
-import 'package:HtmlBlock/game.dart';
+import 'package:techtomb/htmlblock.dart';
 import 'dart:math' show PI;
 
 class Ball extends BodyObject{

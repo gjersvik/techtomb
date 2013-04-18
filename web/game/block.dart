@@ -1,6 +1,6 @@
 library block;
 
-import 'package:HtmlBlock/game.dart';
+import 'package:techtomb/htmlblock.dart';
 import 'ball.dart';
 
 class Block extends BodyObject{

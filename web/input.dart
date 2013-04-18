@@ -1,7 +1,7 @@
 library input;
 
 import 'dart:html';
-import 'package:gamelib/input.dart';
+import 'package:techtomb/gamelib.dart';
 
 typedef void TakeActions(Map<String, dynamic> state);
 

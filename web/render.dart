@@ -3,7 +3,7 @@ library render;
 import 'dart:html';
 import 'dart:math';
 
-import 'package:gamelib/render_html.dart';
+import 'package:techtomb/gamelib_html.dart';
 
 class Render{
   CanvasElement element;

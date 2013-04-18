@@ -1,6 +1,6 @@
 library pad;
 
-import 'package:HtmlBlock/game.dart';
+import 'package:techtomb/htmlblock.dart';
 
 class Pad extends BodyObject{
   World _world;
