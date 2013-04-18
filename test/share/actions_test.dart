@@ -1,7 +1,7 @@
 library actions_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:gamelib/share.dart';
+import 'package:techtomb/share.dart';
 
 main(){
   group('Actions:',() {

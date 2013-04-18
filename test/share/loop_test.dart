@@ -2,7 +2,7 @@ library loop_test;
 
 import 'package:unittest/unittest.dart';
 import 'package:unittest/mock.dart';
-import 'package:gamelib/share.dart';
+import 'package:techtomb/share.dart';
 
 class MockRunner extends Mock implements Runner{}
 

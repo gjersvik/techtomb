@@ -1,7 +1,7 @@
 library timeline_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:gamelib/render.dart';
+import 'package:techtomb/render.dart';
 
 main(){
   group('Timeline:',() {
