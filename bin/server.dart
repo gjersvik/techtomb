@@ -6,5 +6,6 @@ main(){
   midleware.get('/', (FukiyaContext context) {
     context.send('Testing');
   });
+  midleware.staticFiles('./web');
   midleware.listen('0.0.0.0', 8080);
 }
