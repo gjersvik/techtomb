@@ -5,6 +5,8 @@ description: A game and site from Ole Martin Gjersvik
 dependencies:
   box2d:
     git: git://github.com/google/dartbox2d.git
+  fukiya: any
   browser: any
+  mustache4dart: any
 dev_dependencies:
   unittest: any
